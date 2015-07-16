@@ -1,0 +1,1 @@
+<meta property="<?= $view->type; ?>:<?= $view->property; ?>" content="<?= $view->value; ?>" />

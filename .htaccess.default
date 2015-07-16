@@ -1,0 +1,5 @@
+Options +FollowSymlinks -MultiViews -Indexes
+RewriteEngine on
+RewriteBase /
+RewriteRule public/(.+) public/$1  [L]
+RewriteRule . index.php [L]

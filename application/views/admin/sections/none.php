@@ -1,0 +1,1 @@
+<p>Aucun rubrique n'a encore été créée.</p>

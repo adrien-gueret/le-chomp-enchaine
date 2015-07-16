@@ -1,0 +1,20 @@
+# temp files from editors
+*~
+*.bak
+.DS_Store
+.buildpath
+.project
+.settings
+*.tmproj
+build
+.idea
+nbproject/
+# hidden files created by Windows
+Thumbs.db
+desktop.ini
+# config file
+/application/configs/*.json
+.htaccess
+# images files
+/public/img/*.xcf
+/public/img/articles/*
