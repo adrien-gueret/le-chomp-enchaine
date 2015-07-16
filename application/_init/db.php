@@ -13,7 +13,7 @@
 	\EntityPHP\Core::connectToDB($sql['HOST'], $sql['USER'], $sql['PASSWORD'], $sql['DATABASE']);
 
 	// Include all models files
-	\Eliya\Core::requireDirContent('models');
+	\Eliya\Core::requireDirContent('../models');
 
 	// Can't use \EntityPHP\Core::generateDatabase() because of foreign keys constrains...
 	Model_Groups::createTable();
