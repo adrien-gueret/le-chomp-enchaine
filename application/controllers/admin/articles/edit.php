@@ -30,14 +30,15 @@
 			]));
 		}
 
-		public function put_index($id, $title, $content, $id_section, $base64img = null)
+		public function put_index($id, $title, $introduction, $content, $id_section, $base64img = null)
 		{
 			$article = Model_Articles::getById($id);
 
 			$article->setProps([
-				'title'		=>	$title,
-				'content'	=>	$content,
-				'section'	=>	Model_Sections::getById($id_section),
+				'title'				=>	$title,
+				'introduction'		=>	$introduction,
+				'content'			=>	$content,
+				'section'			=>	Model_Sections::getById($id_section),
 				'date_last_update' => $_SERVER['REQUEST_TIME']
 			]);
 

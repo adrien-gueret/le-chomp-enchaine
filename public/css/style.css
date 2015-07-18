@@ -107,6 +107,10 @@ main > header h1 {
 	left: 0; right: 0;
 }
 
+.article-introduction {
+	font-weight: bold;
+}
+
 article a, article a:visited {
 	text-decoration: none;
 	color: #008bff;
@@ -222,9 +226,22 @@ fieldset p {
 	text-align: center;
 }
 
+.label-container {
+	text-align: left;
+	margin: auto;
+	width: 80%;
+}
+
 textarea.article {
 	display: block;
 	margin: 10px auto;
 	width: 80%;
 	height: 500px;
+}
+
+textarea.article.introduction {
+	display: block;
+	margin: 10px auto;
+	width: 80%;
+	height: 50px;
 }

@@ -7,6 +7,7 @@
 		<header ng-style="editCtrl.headerStyle">
 			<h1 ng-bind="editCtrl.currentArticle.title"></h1>
 		</header>
+		<p class="article-introduction">{{editCtrl.currentArticle.introduction}}</p>
 		<article ng-bind-html="editCtrl.currentArticle.content | markdown"></article>
 	</main>
 
@@ -39,12 +40,29 @@
 					</figure>
 				</article>
 			</fieldset>
-		<textarea class="article"
-			  id="article-content"
-			  required
-			  markdown-sanitize
-			  ng-model="editCtrl.currentArticle.content"
-			  name="content"></textarea>
+
+			<p class="label-container">
+				<label for="article-introduction">Introduction de l'article</label> <br />
+				<small>Deux phrases ou trois et pas de formattage spécial : que du texte simple.</small>
+			</p>
+			<textarea id="article-introduction"
+					  name="introduction"
+					  class="article introduction"
+					  ng-model="editCtrl.currentArticle.introduction"></textarea>
+
+			<p class="label-container">
+				<label for="article-content">Contenu de l'article</label> <br />
+				<small>
+					Le coeur de l'article. Formattage possible via
+					<a target="_blank" href="http://daringfireball.net/projects/markdown/syntax">Markdown</a>.
+				</small>
+			</p>
+			<textarea class="article"
+				  id="article-content"
+				  required
+				  markdown-sanitize
+				  ng-model="editCtrl.currentArticle.content"
+				  name="content"></textarea>
 		</div>
 		<hr />
 
