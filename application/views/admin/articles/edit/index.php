@@ -1,7 +1,7 @@
 <h1>Modification d'un article</h1>
 <hr />
 <script id="articleData" type="application/json"><?= $view->article->toJSON() ;?></script>
-<script src="<?= $view->base_url; ?>public/js/angular/articles/edit.js"></script>
+<script src="<?= $view->static_url; ?>js/angular/articles/edit.js"></script>
 <div ng-app="editArticleModule" ng-controller="editArticleController as editCtrl">
 	<main ng-if="editCtrl.previewEnabled">
 		<header ng-style="editCtrl.headerStyle">

@@ -19,5 +19,6 @@
     "SITE_NAME": "Le Chomp Enchaîné",
     "FACEBOOK": {
         "APP_ID": "123456789"
-    }
+    },
+    "STATIC_URL": "http://localhost/public/"
 }

@@ -19,6 +19,7 @@
 	$current_url	=	$request->getProtocol().'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 
 	define('BASE_URL', $request->getBaseURL());
+	define('STATIC_URL', \Eliya\Config('main')->STATIC_URL);
 
 	if(substr($current_url, -1) !== '/')
 		$current_url	.=	'/';
@@ -27,6 +28,7 @@
 		'page_title'				=>	'Le Chomp Enchainé',
 		'page_description'			=>	'',
 		'base_url'					=>	BASE_URL,
+		'static_url'				=>	STATIC_URL,
 		'current_url'				=>	$current_url,
 	]);
 

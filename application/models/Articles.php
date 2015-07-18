@@ -1,7 +1,8 @@
 <?php
 	class Model_Articles extends EntityPHP\Entity
 	{
-		const DEFAULT_IMAGE_URL = 'public/img/articles/no_image.png';
+		const DEFAULT_IMAGE_URL =	'img/articles/no_image.png';
+		const PHYSICAL_FOLDER	=	'public/';
 
 		protected static $table_name = 'articles';
 
@@ -44,11 +45,11 @@
 		}
 
 		public function getMainPictureFolder() {
-			return 	'public/img/articles/' . $this->getId() . '/';
+			return 	'img/articles/' . $this->getId() . '/';
 		}
 
 		public function createPictureFolder() {
-			$picture_folder = $this->getMainPictureFolder();
+			$picture_folder = self::PHYSICAL_FOLDER.$this->getMainPictureFolder();
 
 			if ( ! is_dir($picture_folder)) {
 				mkdir($picture_folder);
@@ -68,7 +69,7 @@
 			{
 				$path = $base_path.$extension;
 
-				if(is_file($path))
+				if(is_file(self::PHYSICAL_FOLDER.$path))
 					return $path;
 			}
 
@@ -77,14 +78,15 @@
 
 		public function getMainPictureURL()
 		{
-			return BASE_URL.$this->getMainPicturePath();
+			return STATIC_URL.$this->getMainPicturePath();
 		}
 
 		public function deleteMainPicture() {
 			$current_image_url = $this->getMainPicturePath();
+			$physical_path = self::PHYSICAL_FOLDER.$current_image_url;
 
-			if ($current_image_url !== self::DEFAULT_IMAGE_URL && is_file($current_image_url)) {
-				return unlink($current_image_url);
+			if ($current_image_url !== self::DEFAULT_IMAGE_URL && is_file($physical_path)) {
+				return unlink($physical_path);
 			}
 
 			return false;
@@ -98,7 +100,7 @@
 			$image_data	=	substr($data_url, strpos($data_url, ',') + 1);
 			$resource	=	imagecreatefromstring(base64_decode($image_data));
 
-			$target_url =	$this->getMainPictureFolder() . $this->getId() . '.png';
+			$target_url =	self::PHYSICAL_FOLDER.$this->getMainPictureFolder() . $this->getId() . '.png';
 
 		 	imagepng($resource, $target_url);
 
@@ -106,6 +108,6 @@
 		}
 
 		public function getUrl() {
-			return BASE_URL.'articles/'.$this->getId().'-'.Library_String::makeUrlCompliant($this->title);
+			return STATIC_URL.'articles/'.$this->getId().'-'.Library_String::makeUrlCompliant($this->title);
 		}
 	}

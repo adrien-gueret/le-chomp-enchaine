@@ -5,8 +5,8 @@
 	<title><?= $view->page_title; ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="<?= $view->page_description; ?>" />
-	<link rel="stylesheet" type="text/css" href="<?= $view->base_url; ?>public/css/style.css" />
-	<link rel="shortcut icon" type="image/x-icon" href="<?= $view->base_url; ?>public/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="<?= $view->static_url; ?>css/style.css" />
+	<link rel="shortcut icon" type="image/x-icon" href="<?= $view->static_url; ?>favicon.ico" />
 	<?php if(isset($view->canonical_url)): ?>
 		<link rel="canonical" href="<?= $view->canonical_url; ?>" />
 	<?php endif; ?>
