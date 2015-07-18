@@ -5,7 +5,7 @@
 		.module('markdown', ['ngSanitize'])
 		.service('RemarkableService', function($window) {
 			if (!$window.Remarkable)
-				throw new ReferenceError('Markdown library not found: please include marked.min.js');
+				throw new ReferenceError('Markdown library not found: please include it');
 
 			var SYMBOLS = {
 				'==':	'center',

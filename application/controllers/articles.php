@@ -28,9 +28,10 @@
 			]);
 
 			\Eliya\Tpl::set('page_description', $article->prop('introduction'));
+			\Eliya\Tpl::set('canonical_url', $canonical_url);
 
-			Eliya\Tpl::set('canonical_url', $canonical_url);
-
-			//$this->response->set($article);
+			$this->response->set(\Eliya\Tpl::get('articles/article', [
+				'article' => $article
+			]));
 		}
 	}

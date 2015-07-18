@@ -13,7 +13,7 @@
 	<?php if(isset($view->facebook_meta_og)): ?>
 		<?= $view->facebook_meta_og; ?>
 	<?php endif; ?>
-	<script src="<?= $view->base_url; ?>public/js/vendors/remarkable.js"></script>
+	<?php include('/application/views/common_js.php'); ?>
 </head>
 <body>
 	<header>

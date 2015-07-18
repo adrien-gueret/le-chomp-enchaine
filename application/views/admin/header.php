@@ -6,10 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="<?= $view->base_url; ?>public/css/style.css" />
 	<link rel="shortcut icon" type="image/x-icon" href="<?= $view->base_url; ?>public/favicon.ico" />
-	<script src="<?= $view->base_url; ?>public/js/vendors/remarkable.js"></script>
-	<script src="<?= $view->base_url; ?>public/js/vendors/angular-1.4.1.min.js"></script>
-	<script src="<?= $view->base_url; ?>public/js/vendors/angular-sanitize-1.4.1.min.js"></script>
-	<script src="<?= $view->base_url; ?>public/js/angular/markdown/markdown.js"></script>
+	<?php include('/application/views/common_js.php'); ?>
 	<script src="<?= $view->base_url; ?>public/js/angular/file-reader/file-reader.js"></script>
 </head>
 <body>
