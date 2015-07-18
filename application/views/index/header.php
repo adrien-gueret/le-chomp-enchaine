@@ -13,7 +13,7 @@
 	<?php if(isset($view->facebook_meta_og)): ?>
 		<?= $view->facebook_meta_og; ?>
 	<?php endif; ?>
-	<?php include('/application/views/common_js.php'); ?>
+	<?php include('application/views/common_js.php'); ?>
 </head>
 <body>
 	<header>

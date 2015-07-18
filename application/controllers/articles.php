@@ -6,7 +6,7 @@
 			$article = Model_Articles::getById($id_article);
 
 			if (empty($article)) {
-				$this->response->set('TODO: handle not found article');
+				$this->response->error('L\'article demandé est introuvable', 404);
 				return;
 			}
 

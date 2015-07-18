@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="<?= $view->base_url; ?>public/css/style.css" />
 	<link rel="shortcut icon" type="image/x-icon" href="<?= $view->base_url; ?>public/favicon.ico" />
-	<?php include('/application/views/common_js.php'); ?>
+	<?php include('application/views/common_js.php'); ?>
 	<script src="<?= $view->base_url; ?>public/js/angular/file-reader/file-reader.js"></script>
 </head>
 <body>

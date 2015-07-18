@@ -1,0 +1,122 @@
+@keyframes chomp-animation {
+	100% {background-position: -2560px 0; }
+}
+
+@keyframes chomp-animation-hurted {
+	100% {background-position: -2560px 128px; }
+}
+
+@keyframes background-scrolling {
+	100% {background-position: -512px 0;}
+}
+
+html {
+	background-color: #333;
+	font-family: Calibri, Arial, sans-serif;
+	text-align: center;
+}
+
+h1 {
+	color: #f3f3f3;
+}
+
+.background-animation {
+	background-position: 0 0;
+	background-repeat: repeat-x;
+}
+
+#scene {
+	margin: auto;
+	max-width: 100%;
+	width: 512px;
+	height: 236px;
+	padding-top: 68px;
+	border: 2px solid #000;
+	position: relative;
+	background-image: url(../img/errors/background_sky.png);
+	background-color: #78b8d8;
+	animation: background-scrolling 10s linear infinite;
+}
+
+#towers {
+	width: 100%;
+	height: 156px;
+	background-image: url(../img/errors/background_towers.png);
+	animation: background-scrolling 7s linear infinite;
+}
+
+#ground {
+	width: 100%;
+	height: 80px;
+	background-image: url(../img/errors/background_ground.png);
+	animation: background-scrolling 4s linear infinite;
+}
+
+#chomp-container {
+	position: absolute;
+	left: 20%;
+	bottom: 80px;
+	width: 100%;
+	height: 128px;
+}
+
+#chomp {
+	display: block;
+	cursor: pointer;
+	position: absolute;
+	width: 128px;
+	height: 128px;
+	background-image: url(../img/errors/sprites_chomp.png);
+	background-position: 0 0;
+	animation: chomp-animation 1.65s steps(20) infinite;
+}
+
+.clicked #chomp {
+	cursor: default;
+	background-position: 0 128px;
+	animation: chomp-animation-hurted 1.65s steps(20) infinite;
+}
+
+#scene.clicked, .clicked #towers, .clicked #ground {
+	animation-play-state: paused;
+}
+
+#bubble {
+	position: absolute;
+	background-color: #fff;
+	padding: 5px;
+	border-radius: 10px;
+	width: 25%;
+	left: 150px;
+	top: 5px;
+	text-align: center;
+	box-shadow: 2px 2px 2px 0 #000;
+	word-break: break-word;
+}
+
+.clicked #bubble {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+#bubble::before {
+	display: block;
+	content: '';
+	width: 0;
+	height: 0;
+	border: 10px solid transparent;
+	position: absolute;
+	left: -18px;
+	border-top-width: 5px;
+	border-right-color: white;
+	bottom: 8px;
+}
+
+a, a:visited {
+	color: #008bff;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
