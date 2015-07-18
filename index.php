@@ -20,6 +20,7 @@
 
 	define('BASE_URL', $request->getBaseURL());
 	define('STATIC_URL', \Eliya\Config('main')->STATIC_URL);
+	define('PUBLIC_FOLDER_PATH', __DIR__.DIRECTORY_SEPARATOR .'public'.DIRECTORY_SEPARATOR );
 
 	if(substr($current_url, -1) !== '/')
 		$current_url	.=	'/';
