@@ -23,7 +23,7 @@
 					'locale' => Library_Facebook::LOCALE_FR_FR,
 				],
 				'fb' => [
-					'app_id' => '903975212999594'
+					'app_id' => \Eliya\Config('main')->FACEBOOK['APP_ID']
 				]
 			]);
 

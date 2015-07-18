@@ -16,5 +16,8 @@
         "DATABASE"  :   "my_database"
     },
     "SALT": "my_salt",
-    "SITE_NAME": "Le Chomp Enchaîné"
+    "SITE_NAME": "Le Chomp Enchaîné",
+    "FACEBOOK": {
+        "APP_ID": "123456789"
+    }
 }
