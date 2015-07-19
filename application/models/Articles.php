@@ -101,6 +101,8 @@ class Model_Articles extends EntityPHP\Entity {
 
 		$target_url =	PUBLIC_FOLDER_PATH.$this->getMainPictureFolder() . $this->getId() . '.png';
 
+		imagealphablending($resource, true);
+		imagesavealpha($resource, true);
 		imagepng($resource, $target_url);
 
 		chmod($target_url, 0777);
