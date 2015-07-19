@@ -77,6 +77,8 @@ body header li a:hover {
 main {
 	display: block;
 	padding: 0 3% 0 3%;
+	max-width: 1150px;
+	margin: auto;
 }
 
 main h1, main h2, main h3 {
