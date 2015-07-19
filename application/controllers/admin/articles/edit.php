@@ -34,21 +34,21 @@
 		{
 			$article = Model_Articles::getById($id);
 
+			if( ! empty($base64img)) {
+				$article->updateMainPicture($base64img);
+			}
+
 			$article->setProps([
 				'title'				=>	$title,
 				'introduction'		=>	$introduction,
 				'content'			=>	$content,
 				'section'			=>	Model_Sections::getById($id_section),
-				'date_last_update' => $_SERVER['REQUEST_TIME']
+				'date_last_update'	=> $_SERVER['REQUEST_TIME']
 			]);
 
 			$article->load('author');
 
 			Model_Articles::update($article);
-
-			if( ! empty($base64img)) {
-				$article->updateMainPicture($base64img);
-			}
 
 			$this->get_index($id);
 		}

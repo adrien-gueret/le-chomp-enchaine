@@ -59,10 +59,22 @@ class Model_Articles extends EntityPHP\Entity {
 		return false;
 	}
 
+	private function _getFileName($timestamp = null)
+	{
+		$appendedTimestamp = $timestamp ?: $this->date_last_update;
+
+		if (!is_numeric($appendedTimestamp)) {
+			$dateTime = new DateTime($appendedTimestamp);
+			$appendedTimestamp = $dateTime->getTimestamp();
+		}
+
+		return md5($this->getId().$appendedTimestamp);
+	}
+
 	public function getMainPicturePath()
 	{
 		$extensions = ['png', 'jpg', 'jpeg'];
-		$base_path = $this->getMainPictureFolder() . $this->getId() . '.';
+		$base_path = $this->getMainPictureFolder() . $this->_getFileName() . '.';
 
 		foreach($extensions as $extension)
 		{
@@ -99,7 +111,7 @@ class Model_Articles extends EntityPHP\Entity {
 		$image_data	=	substr($data_url, strpos($data_url, ',') + 1);
 		$resource	=	imagecreatefromstring(base64_decode($image_data));
 
-		$target_url =	PUBLIC_FOLDER_PATH.$this->getMainPictureFolder() . $this->getId() . '.png';
+		$target_url =	PUBLIC_FOLDER_PATH.$this->getMainPictureFolder() . $this->_getFileName($_SERVER['REQUEST_TIME']) . '.png';
 
 		imagealphablending($resource, true);
 		imagesavealpha($resource, true);
