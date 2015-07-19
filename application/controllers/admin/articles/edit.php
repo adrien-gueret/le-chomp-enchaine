@@ -34,9 +34,7 @@
 		{
 			$article = Model_Articles::getById($id);
 
-			if( ! empty($base64img)) {
-				$article->updateMainPicture($base64img);
-			}
+			$article->updateMainPicture($base64img);
 
 			$article->setProps([
 				'title'				=>	$title,

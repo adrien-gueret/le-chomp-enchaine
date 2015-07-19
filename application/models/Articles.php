@@ -2,6 +2,7 @@
 
 class Model_Articles extends EntityPHP\Entity {
 	const DEFAULT_IMAGE_URL =	'img/articles/no_image.png';
+	const ALLOWED_EXTENSION	=	'png';
 
 	protected static $table_name = 'articles';
 
@@ -43,12 +44,66 @@ class Model_Articles extends EntityPHP\Entity {
 		return is_array($result) ? $result : [];
 	}
 
-	public function getMainPictureFolder() {
+	public function getUrl()
+	{
+		return BASE_URL.'articles/'.$this->getId().'-'.Library_String::makeUrlCompliant($this->title);
+	}
+
+	private function _getMainPictureFolder()
+	{
 		return 	'img/articles/' . $this->getId() . '/';
 	}
 
-	public function createPictureFolder() {
-		$picture_folder = PUBLIC_FOLDER_PATH.$this->getMainPictureFolder();
+	private function _getMainPictureFileName($timestamp = null)
+	{
+		$appendedTimestamp = $timestamp ?: $this->date_last_update;
+
+		if (!is_numeric($appendedTimestamp)) {
+			$dateTime = new DateTime($appendedTimestamp);
+			$appendedTimestamp = $dateTime->getTimestamp();
+		}
+
+		return md5($this->getId().$appendedTimestamp).'.'.self::ALLOWED_EXTENSION;
+	}
+
+	private function _getMainPicturePhysicalFolder()
+	{
+		return PUBLIC_FOLDER_PATH.$this->_getMainPictureFolder();
+	}
+
+	private function _getMainPicturePhysicalPath($timestamp = null)
+	{
+		return $this->_getMainPicturePhysicalFolder().$this->_getMainPictureFileName($timestamp);
+	}
+
+	private function _getMainPictureData()
+	{
+		$path = $this->_getMainPicturePhysicalPath();
+
+		if (!file_exists($path))
+			return false;
+
+		return file_get_contents($path);
+	}
+
+	private function _getMainPicturePublicFolder()
+	{
+		return STATIC_URL.$this->_getMainPictureFolder();
+	}
+
+	public function getMainPictureURL()
+	{
+		if (file_exists($this->_getMainPicturePhysicalPath()))
+		{
+			return $this->_getMainPicturePublicFolder().$this->_getMainPictureFileName();
+		}
+
+		return STATIC_URL.self::DEFAULT_IMAGE_URL;
+	}
+
+	private function _createPictureFolder()
+	{
+		$picture_folder = $this->_getMainPicturePhysicalFolder();
 
 		if ( ! is_dir($picture_folder)) {
 			mkdir($picture_folder);
@@ -59,68 +114,39 @@ class Model_Articles extends EntityPHP\Entity {
 		return false;
 	}
 
-	private function _getFileName($timestamp = null)
+	private function _deleteMainPicture()
 	{
-		$appendedTimestamp = $timestamp ?: $this->date_last_update;
+		$path = $this->_getMainPicturePhysicalPath();
 
-		if (!is_numeric($appendedTimestamp)) {
-			$dateTime = new DateTime($appendedTimestamp);
-			$appendedTimestamp = $dateTime->getTimestamp();
-		}
-
-		return md5($this->getId().$appendedTimestamp);
-	}
-
-	public function getMainPicturePath()
-	{
-		$extensions = ['png', 'jpg', 'jpeg'];
-		$base_path = $this->getMainPictureFolder() . $this->_getFileName() . '.';
-
-		foreach($extensions as $extension)
-		{
-			$path = $base_path.$extension;
-
-			if(is_file(PUBLIC_FOLDER_PATH.$path))
-				return $path;
-		}
-
-		return self::DEFAULT_IMAGE_URL;
-	}
-
-	public function getMainPictureURL()
-	{
-		return STATIC_URL.$this->getMainPicturePath();
-	}
-
-	public function deleteMainPicture() {
-		$current_image_url = $this->getMainPicturePath();
-		$physical_path = PUBLIC_FOLDER_PATH.$current_image_url;
-
-		if ($current_image_url !== self::DEFAULT_IMAGE_URL && is_file($physical_path)) {
-			return unlink($physical_path);
-		}
+		if (file_exists($path))
+			return unlink($path);
 
 		return false;
 	}
 
-	public function updateMainPicture($data_url) {
-		if ( ! $this->deleteMainPicture()) {
-			$this->createPictureFolder();
-		}
+	public function updateMainPicture($data_url = null)
+	{
+		$image_data = null;
+		
+		if (empty($data_url))
+			$image_data	=	base64_encode($this->_getMainPictureData());
+		else
+			$image_data	=	substr($data_url, strpos($data_url, ',') + 1);
 
-		$image_data	=	substr($data_url, strpos($data_url, ',') + 1);
+		if (empty($image_data))
+			return false;
+
+		if ( ! $this->_deleteMainPicture())
+			$this->_createPictureFolder();
+
 		$resource	=	imagecreatefromstring(base64_decode($image_data));
 
-		$target_url =	PUBLIC_FOLDER_PATH.$this->getMainPictureFolder() . $this->_getFileName($_SERVER['REQUEST_TIME']) . '.png';
+		$target_path =	$this->_getMainPicturePhysicalPath($_SERVER['REQUEST_TIME']);
 
 		imagealphablending($resource, true);
 		imagesavealpha($resource, true);
-		imagepng($resource, $target_url);
+		imagepng($resource, $target_path);
 
-		chmod($target_url, 0777);
-	}
-
-	public function getUrl() {
-		return BASE_URL.'articles/'.$this->getId().'-'.Library_String::makeUrlCompliant($this->title);
+		return chmod($target_path, 0777);
 	}
 }

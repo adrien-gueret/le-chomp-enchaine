@@ -46,8 +46,10 @@
 				<small>Deux phrases ou trois et pas de formattage spécial : que du texte simple.</small>
 			</p>
 			<textarea id="article-introduction"
+					  required
 					  name="introduction"
 					  class="article introduction"
+					  markdown-sanitize
 					  ng-model="editCtrl.currentArticle.introduction"></textarea>
 
 			<p class="label-container">
