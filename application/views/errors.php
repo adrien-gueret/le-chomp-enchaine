@@ -4,8 +4,8 @@
 		<meta charset="utf-8" />
 		<title>Erreur <?= $view->error_number; ?></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="shortcut icon" type="image/x-icon" href="<?= $view->static_url; ?>favicon.ico" />
-		<link rel="stylesheet" type="text/css" href="<?= $view->static_url; ?>css/errors.css" />
+		<link rel="shortcut icon" type="image/x-icon" href="<?= Library_Assets::get('favicon.ico'); ?>" />
+		<link rel="stylesheet" type="text/css" href="<?= Library_Assets::get('css/errors.css'); ?>" />
 	</head>
 	<body>
         <h1>Erreur #<?= $view->error_number; ?> !</h1>
