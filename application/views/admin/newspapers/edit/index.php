@@ -30,14 +30,12 @@
 	<fieldset>
 		<legend>Ajouter un nouvel article</legend>
 
-		<?php if(empty($view->unpublished_articles)): ?>
+		<?php if(empty($view->tpl_unpublished_articles)): ?>
 			<p>Il n'y a pas d'articles disponibles.</p>
 		<?php else: ?>
 			<label for="form-article">Sélectionnez l'article : </label>
 			<select id="form-article" name="id_article">
-				<?php foreach($view->unpublished_articles as $article): ?>
-				<option value="<?= $article->id; ?>"><?= $article->title; ?></option>
-				<?php endforeach; ?>
+				<?= $view->tpl_unpublished_articles; ?>
 			</select>
 			<p><input type="submit" value="Ajouter" /></p>
 		<?php endif; ?>

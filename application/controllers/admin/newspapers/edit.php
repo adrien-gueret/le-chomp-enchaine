@@ -25,10 +25,35 @@
 				]);
 			}
 
+			$tpl_unpublished_articles = null;
+			$unpublished_articles = Model_Articles::getUnpublished();
+
+			if ( ! empty($unpublished_articles)) {
+				$total_articles = count($unpublished_articles);
+				$last_id_section = null;
+
+				foreach($unpublished_articles as $key => $article) {
+					$is_last_index = $key + 1 === $total_articles;
+
+					$open_optgroup = $article->id_section !== $last_id_section;
+					$close_optgroup = $open_optgroup && $last_id_section !== null || $is_last_index;
+
+					$tpl_unpublished_articles .= \Eliya\Tpl::get('common/forms/option', [
+						'value' => $article->id,
+						'label' => $article->title,
+						'open_optgroup' => $open_optgroup,
+						'close_optgroup' => $close_optgroup,
+						'group_name' => $article->section_name,
+					]);
+
+					$last_id_section = $article->id_section;
+				}
+			}
+
 			$this->response->set(\Eliya\Tpl::get('admin/newspapers/edit/index', [
-				'newspaper'				=>	$newspaper,
-				'unpublished_articles'	=>	Model_Articles::getUnpublished(),
-				'tpl_articles'			=>	$tpl_articles,
+				'newspaper'					=>	$newspaper,
+				'tpl_unpublished_articles'	=>	$tpl_unpublished_articles,
+				'tpl_articles'				=>	$tpl_articles,
 			]));
 		}
 

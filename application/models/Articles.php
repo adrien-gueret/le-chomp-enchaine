@@ -34,11 +34,14 @@ class Model_Articles extends EntityPHP\Entity {
 	public static function getUnpublished()
 	{
 		$result	=	\EntityPHP\EntityRequest::executeSQL('
-			SELECT id, id_author, id_section, title FROM articles
-			WHERE id NOT IN (
+			SELECT articles.id, articles.id_author, articles.id_section, articles.title, sections.name AS section_name
+			FROM articles
+			JOIN sections ON articles.id_section = sections.id
+			WHERE articles.id NOT IN (
 				SELECT DISTINCT id_articles
 				FROM newspapers2articles
 			)
+			ORDER BY articles.id_section
 		');
 
 		return is_array($result) ? $result : [];
