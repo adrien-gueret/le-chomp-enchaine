@@ -3,9 +3,6 @@
 	{
 		public function get_index()
 		{
-			$password = Library_String::generatePassword();
-
-			$perm = $this->_currentUser->hasPermission(Model_Groups::PERM_MANAGE_SECTIONS);
-			$this->response->set($perm ? 'oui' : 'non');
+			$this->response->set(\Eliya\Tpl::get('index/index'));
 		}
 	}

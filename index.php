@@ -25,9 +25,13 @@
 	if(substr($current_url, -1) !== '/')
 		$current_url	.=	'/';
 
+	$page_description = 'Un fanzine presque-mensuel réalisé par des fans pour les fans de Nintendo. ';
+	$page_description .= 'Chaque mois (à peu prêt !), retrouvez des articles en rapport avec Nintendo, que ce soit sur ';
+	$page_description .= 'l\'actualité, des découvertes de jeux ou des dossiers sur divers sujets.';
+
 	\Eliya\Tpl::set([
 		'page_title'				=>	'Le Chomp Enchainé',
-		'page_description'			=>	'',
+		'page_description'			=>	$page_description,
 		'base_url'					=>	BASE_URL,
 		'static_url'				=>	STATIC_URL,
 		'current_url'				=>	$current_url,

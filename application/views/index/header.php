@@ -24,7 +24,7 @@
 					<a href="#">Journaux</a>
 				</li>
 				<li>
-					<a href="<?= $view->base_url; ?>sections">Rubriques</a>
+					<a href="#">Rubriques</a>
 				</li>
 				<li>
 					<a href="#">A propos</a>
