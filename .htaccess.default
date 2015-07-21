@@ -1,7 +1,7 @@
 Options +FollowSymlinks -MultiViews -Indexes
 RewriteEngine on
 RewriteBase /
-RewriteRule ^/(.*)\.([0-9]+)\.css$ /$1.css [L]
-RewriteRule ^/(.*)\.([0-9]+)\.js$ /$1.js [L]
+RewriteRule ^(.*)\.([0-9]+)\.css$ /$1.css [L]
+RewriteRule ^(.*)\.([0-9]+)\.js$ /$1.js [L]
 RewriteRule public/(.+) public/$1  [L]
 RewriteRule ^.*$ index.php [L]
