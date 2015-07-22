@@ -31,7 +31,14 @@
 
 			Model_Users::add(new Model_Users($username, $email, $password, $group));
 
-			// TODO: send an email with generated password to new user
+			$email_content = \Eliya\Tpl::get('emails/register', [
+				'username'	=>	$username,
+				'email'		=>	$email,
+				'password'	=>	$password,
+				'login_url'	=>	BASE_URL.'admin/login',
+			]);
+
+			Library_Email::send($email, 'Bienvenue sur Le Chomp Enchaîné !', $email_content);
 			$this->get_index();
 		}
 	}
