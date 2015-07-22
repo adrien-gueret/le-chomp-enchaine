@@ -14,6 +14,7 @@
 			};
 			var REGEXPS = {
 				YOUTUBE_EMBED: /https?:\/\/www\.youtube\.com\/embed\/.+/i,
+				SOUNDCLOUD_EMBED: /https?:\/\/api\.soundcloud\.com\/tracks\/.+/i,
 				MP3: /\.mp3(\?.*)?$/i
 			};
 
@@ -70,6 +71,16 @@
 					}
 
 					escapedTitle += '<a href="' + href + '" target="_blank">Lien vers le .mp3</a>';
+				}
+				// Maybe SoundCloud ?
+				else if(REGEXPS.SOUNDCLOUD_EMBED.test(href)) {
+					var soundcloud_url = 'https://w.soundcloud.com/player/?';
+					var params = [
+						'url=' + href, 'auto_play=false', 'hide_related=true',
+						'show_comments=false', 'show_reposts=false', 'visual=true'
+					];
+
+					media = '<div><iframe src="' + encodeURI(soundcloud_url + params.join('&')) + '"></iframe></div>';
 				}
 				// Else we consider it's an image
 				else {
