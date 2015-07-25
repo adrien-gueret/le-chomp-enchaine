@@ -28,6 +28,7 @@
 				]
 			]);
 
+			\Eliya\Tpl::set('page_title', $article->prop('title'));
 			\Eliya\Tpl::set('page_description', $article->prop('introduction'));
 			\Eliya\Tpl::set('canonical_url', $canonical_url);
 

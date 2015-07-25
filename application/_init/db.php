@@ -6,7 +6,7 @@
 	\Eliya\Core::init();
 
 	// Init DB
-	require_once '../vendors/EntityPHP/EntityPHP.php';
+	require_once '../vendors/EntityPHP/src/EntityPHP.php';
 
 	$sql	=	\Eliya\Config('main')->SQL;
 
