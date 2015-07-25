@@ -8,8 +8,6 @@
 		protected $password;
 		protected $usergroup;
 
-		const DEFAULT_GROUP_ID = 1;
-
 		public static function __structure()
 		{
 			return [
@@ -24,8 +22,8 @@
 		{
 			$this->username = $username;
 			$this->email = $email;
-			$this->password = Library_String::hash(trim($password));
-			$this->usergroup = $group ?: Model_Groups::getById(self::DEFAULT_GROUP_ID);
+			$this->password = empty($password) ? null : Library_String::hash(trim($password));
+			$this->usergroup = $group;
 		}
 
 		public static function login($email, $password)

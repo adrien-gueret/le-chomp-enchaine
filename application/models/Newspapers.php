@@ -7,6 +7,14 @@
 		protected $name;
 		protected $date_publication;
 
+		public static function getByIdArticle($id_article)
+		{
+			return self::createRequest()
+					->where('articles.id=?', [intval($id_article)])
+					->getOnly(1)
+					->exec();
+		}
+
 		public function __construct($name = 'Sans titre')
 		{
 			$this->name	=	$name;

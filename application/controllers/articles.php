@@ -3,7 +3,8 @@
 	{
 		public function get_index($id_article = 0)
 		{
-			$article = Model_Articles::getById($id_article);
+			$article = Model_Articles::getFullDataById($id_article);
+			$newspaper = Model_Newspapers::getByIdArticle($article->getId());
 
 			if (empty($article)) {
 				$this->response->error('L\'article demandé est introuvable', 404);
@@ -31,7 +32,8 @@
 			\Eliya\Tpl::set('canonical_url', $canonical_url);
 
 			$this->response->set(\Eliya\Tpl::get('articles/article', [
-				'article' => $article
+				'article' 	=> $article,
+				'newspaper' => $newspaper,
 			]));
 		}
 	}

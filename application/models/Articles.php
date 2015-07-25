@@ -47,6 +47,34 @@ class Model_Articles extends EntityPHP\Entity {
 		return is_array($result) ? $result : [];
 	}
 
+	public static function getFullDataById($id_article)
+	{
+		$article_data = static::createRequest()
+					->select('id, title, introduction, content, date_last_update, author.username, author.id, section')
+					->where('id=?', [intval($id_article)])
+					->getOnly(1)
+					->exec();
+
+		if (empty($article_data))
+			return null;
+
+		$author = new Model_Users($article_data->author_username);
+		$author->prop('id', $article_data->author_id);
+
+		$section = new Model_Sections($article_data->section_name);
+		$section->prop('id', $article_data->section_id);
+
+		return new Model_Articles([
+			'id' => $article_data->id,
+			'title' => $article_data->title,
+			'introduction' => $article_data->introduction,
+			'content' => $article_data->content,
+			'date_last_update' => $article_data->date_last_update,
+			'author' => $author,
+			'section' => $section,
+		]);
+	}
+
 	public function getUrl()
 	{
 		return BASE_URL.'articles/'.$this->getId().'-'.Library_String::makeUrlCompliant($this->title);
