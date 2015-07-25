@@ -10,7 +10,7 @@
 	session_start();
 
 	//Init DB
-	require_once 'application/vendors/EntityPHP/EntityPHP.php';
+	require_once 'application/vendors/EntityPHP/src/EntityPHP.php';
 
 	$sql	=	\Eliya\Config('main')->SQL;
 
