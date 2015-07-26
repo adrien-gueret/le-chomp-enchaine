@@ -66,6 +66,9 @@
 				'date_publication'	=>	$isPublished ? $_SERVER['REQUEST_TIME'] : null,
 			]);
 
+			// Don't forget to load articles before update newspaper otherwise they'll all be unlinked!
+			$newspaper->load('articles');
+
 			Model_Newspapers::update($newspaper);
 
 			$this->get_index($id);
