@@ -6,10 +6,10 @@
 	</header>
 	<aside class="article-infos">
 		Dans <b>"<?= $view->article->prop('section')->prop('name'); ?>"</b>
-		par <b><?= $view->article->prop('author')->prop('username'); ?></b>
+		par <b><a href="<?= $view->article->prop('author')->getUrl(); ?>"><?= $view->article->prop('author')->prop('username'); ?></a></b>
 		| Dernière modification le <b><?= date('d/m/Y', strtotime($view->article->prop('date_last_update'))); ?></b>
 		<?php if ( ! empty($view->newspaper)): ?>
-			| Publié dans le journal <b>"<?= $view->newspaper->prop('name'); ?>"</b>
+			| Publié dans le journal <b>"<a href="<?= $view->newspaper->getUrl(); ?>"><?= $view->newspaper->prop('name'); ?></a>"</b>
 		<?php endif; ?>
 	</aside>
 	<p class="article-introduction"><?= $view->article->prop('introduction'); ?></p>

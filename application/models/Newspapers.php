@@ -30,4 +30,9 @@
 				'articles' => array('Model_Articles')
 			];
 		}
+
+		public function getUrl()
+		{
+			return BASE_URL.'newspapers/'.$this->getId().'-'.Library_String::makeUrlCompliant($this->name);
+		}
 	}

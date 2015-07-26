@@ -75,4 +75,9 @@
 		{
 			return $this->load('usergroup')->hasPermission($permission_name);
 		}
+
+		public function getUrl()
+		{
+			return BASE_URL.'authors/'.$this->getId().'-'.Library_String::makeUrlCompliant($this->username);
+		}
 	}
