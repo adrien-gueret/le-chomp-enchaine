@@ -6,7 +6,9 @@
 	"ROUTING"   :	{
         "BASE_URL"	:	"/",
         "RULES"     		:   {
-		  "articles/([0-9]+)(?:-[0-9a-z]+)+" : ["articles", "index", "id_article"]
+		  "articles/([0-9]+)(?:-[0-9a-z]+)+" : ["articles", "index", "id_article"],
+		  "newspapers/([0-9]+)(?:-[0-9a-z]+)+" : ["newspapers", "index", "id_newspapers"],
+          "authors/([0-9]+)(?:-[0-9a-z]+)+" : ["authors", "index", "id_author"]
 		}
 	},
     "SQL"       :   {
