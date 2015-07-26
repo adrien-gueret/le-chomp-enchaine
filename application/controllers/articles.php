@@ -4,10 +4,18 @@
 		public function get_index($id_article = 0)
 		{
 			$article = Model_Articles::getFullDataById($id_article);
-			$newspaper = Model_Newspapers::getByIdArticle($article->getId());
 
 			if (empty($article)) {
-				$this->response->error('L\'article demandé est introuvable', 404);
+				$this->response->error('L\'article demandé est introuvable.', 404);
+				return;
+			}
+
+			$newspaper = Model_Newspapers::getByIdArticle($article->getId());
+			$isPublished = ! empty($newspaper) && ! empty($newspaper->prop('date_publication'));
+			$canReadUnpublished = $this->_currentUser->hasPermission(Model_Groups::PERM_READ_UNPUBLISHED_ARTICLES);
+
+			if ( ! $isPublished && ! $canReadUnpublished) {
+				$this->response->error('L\'article demandé n\'est pas ou plus publié.', 403);
 				return;
 			}
 

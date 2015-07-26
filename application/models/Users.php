@@ -8,6 +8,9 @@
 		protected $password;
 		protected $usergroup;
 
+		const DEFAULT_GROUP_ID = 1;
+		const ANONYMOUS_USERNAME = 'Anonyme';
+
 		public static function __structure()
 		{
 			return [
@@ -49,7 +52,13 @@
 		public static function getCurrentUser()
 		{
 			$user	=	Library_Session::get('currentUser');
-			return empty($user) ?  new Model_Users() : unserialize($user);
+
+			if (empty($user)) {
+				$group = Model_Groups::getById(self::DEFAULT_GROUP_ID);
+				return new Model_Users(self::ANONYMOUS_USERNAME, null, null, $group);
+			}
+			
+			return unserialize($user);
 		}
 
 		public static function getAllWithGroupsInfos()
