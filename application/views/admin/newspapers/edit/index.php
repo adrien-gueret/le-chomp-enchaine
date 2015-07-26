@@ -1,8 +1,10 @@
 <h1>Modification d'un fanzine</h1>
-
+<script id="newspaperData" type="application/json">{"fileSrc": "<?= $view->newspaper->getMainPictureURL();?>"}</script>
+<script src="<?= Library_Assets::get('js/angular/newspapers/edit.js'); ?>"></script>
 <form action="<?= $view->base_url; ?>admin/newspapers/edit?id=<?= $view->newspaper->getId(); ?>" method="post">
 	<input type="hidden" name="__method__" value="PUT" />
-	<fieldset>
+	<fieldset ng-app="editNewspaperModule" ng-controller="editNewspaperController as editCtrl">
+		<input type="hidden" name="base64img" value="{{editCtrl.base64img}}" ng-if="editCtrl.base64img" />
 		<legend>Informations principales</legend>
 		<label for="newspaper-title">Nom : </label>
 		<input type="text"
@@ -17,6 +19,15 @@
 			   name="isPublished"
 			   value="1"
 			   <?= $view->newspaper->prop('date_publication') ? 'checked': ''; ?> />
+		<br />
+		<label for="newspaper-image">Image de présentation : </label>
+		<input type="file" file-reader="editCtrl.fileHandler($data)" id="newspaper-image" />
+		<article>
+			<figure class="preview">
+				<img ng-src="{{editCtrl.currentNewspaper.fileSrc}}" alt="Image" />
+				<figcaption>230px * 230px</figcaption>
+			</figure>
+		</article>
 		<p><input type="submit" value="Sauvegarder" /></p>
 	</fieldset>
 </form>

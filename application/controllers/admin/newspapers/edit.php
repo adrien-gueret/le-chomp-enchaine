@@ -57,9 +57,11 @@
 			]));
 		}
 
-		public function put_index($id, $name, $isPublished = false)
+		public function put_index($id, $name, $isPublished = false, $base64img = null)
 		{
 			$newspaper = Model_Newspapers::getById($id);
+
+			$newspaper->updateMainPicture($base64img);
 
 			$newspaper->setProps([
 				'name'				=>	$name,
