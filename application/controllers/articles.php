@@ -11,7 +11,7 @@
 			}
 
 			$newspaper = Model_Newspapers::getByIdArticle($article->getId());
-			$isPublished = ! empty($newspaper) && ! empty($newspaper->prop('date_publication'));
+			$isPublished = ! empty($newspaper) && ! is_null($newspaper->prop('date_publication'));
 			$canReadUnpublished = $this->_currentUser->hasPermission(Model_Groups::PERM_READ_UNPUBLISHED_ARTICLES);
 
 			if ( ! $isPublished && ! $canReadUnpublished) {
