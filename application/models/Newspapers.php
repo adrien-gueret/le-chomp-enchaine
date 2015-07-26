@@ -15,6 +15,14 @@
 					->exec();
 		}
 
+		public static function getAllPublished()
+		{
+			return self::createRequest()
+					->where('date_publication IS NOT NULL')
+					->orderBy('date_publication DESC')
+					->exec();
+		}
+
 		public function __construct($name = 'Sans titre')
 		{
 			$this->name	=	$name;
