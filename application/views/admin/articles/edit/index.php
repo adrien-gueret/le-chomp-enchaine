@@ -37,6 +37,7 @@
 				<article ng-if="editCtrl.currentArticle.fileSrc">
 					<figure class="preview">
 						<img ng-src="{{editCtrl.currentArticle.fileSrc}}" alt="Image" />
+						<figcaption>700px * 400px</figcaption>
 					</figure>
 				</article>
 			</fieldset>

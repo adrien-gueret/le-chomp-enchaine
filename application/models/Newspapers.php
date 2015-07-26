@@ -1,6 +1,8 @@
 <?php
 	class Model_Newspapers extends EntityPHP\Entity
 	{
+		use Trait_Picture;
+
 		protected static $table_name = 'newspapers';
 
 		protected $articles;
@@ -42,5 +44,15 @@
 		public function getUrl()
 		{
 			return BASE_URL.'newspapers/'.$this->getId().'-'.Library_String::makeUrlCompliant($this->name);
+		}
+
+		protected function _getMainPictureRootFolder()
+		{
+			return 	'img/newspapers/';
+		}
+
+		protected function _getAppendedTimestamp()
+		{
+			return 	$this->date_publication;
 		}
 	}

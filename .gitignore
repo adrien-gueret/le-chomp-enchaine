@@ -18,3 +18,4 @@ desktop.ini
 # images files
 /public/img/*.xcf
 /public/img/articles/*
+/public/img/newspapers/*
