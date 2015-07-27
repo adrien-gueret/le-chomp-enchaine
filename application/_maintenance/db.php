@@ -15,12 +15,8 @@
 	// Include all models files
 	\Eliya\Core::requireDirContent('../models');
 
-	// Can't use \EntityPHP\Core::generateDatabase() because of foreign keys constrains...
-	Model_Groups::createTable();
-	Model_Users::createTable();
-	Model_Sections::createTable();
-	Model_Articles::createTable();
-	Model_Newspapers::createTable();
+	// Generate the dabatase based on our models
+	\EntityPHP\Core::generateDatabase();
 
 	Model_Sections::add(new Model_Sections('Edito'));
 	Model_Sections::add(new Model_Sections('Quoi d\'neuf Mario ?'));
