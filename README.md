@@ -9,4 +9,4 @@
 2. Copy & paste `/application/configs/*.json.default` files, remove the `.default` extension and update their content
 to match your environment.
 
-3. Run scripts from `/_init` folder in order to create database.
+3. Run scripts from `/_maintenance` folder in order to create database.
