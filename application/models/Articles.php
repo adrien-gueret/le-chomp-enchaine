@@ -41,7 +41,7 @@ class Model_Articles extends EntityPHP\Entity {
 		$section->prop('id', $article_data->section_id);
 
 		$newspaper = new Model_Newspapers($article_data->newspaper_name, $article_data->newspaper_date_publication);
-		$section->prop('id', $article_data->newspaper_id);
+		$newspaper->prop('id', $article_data->newspaper_id);
 
 		return new Model_Articles([
 			'id' => $article_data->id,
