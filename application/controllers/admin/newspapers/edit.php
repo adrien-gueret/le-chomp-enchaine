@@ -20,8 +20,9 @@
 				$tpl_articles	=	\Eliya\Tpl::get('admin/newspapers/edit/articles/none');
 			} else {
 				$tpl_articles	=	\Eliya\Tpl::get('admin/newspapers/edit/articles/list', [
-					'articles'		=>	$articles,
-					'id_newspaper'	=>	$id,
+					'articles'			=>	$articles,
+					'total_articles'	=>	count($articles),
+					'id_newspaper'		=>	$id,
 				]);
 			}
 
@@ -83,6 +84,8 @@
 			$article->load('section');
 
 			Model_Articles::update($article);
+			Model_Articles::cleanArticlesPositions($id);
+
 			$this->get_index($id);
 		}
 
@@ -95,6 +98,17 @@
 			$article->load('section');
 
 			Model_Articles::update($article);
+			Model_Articles::cleanArticlesPositions($id);
+
+			$this->get_index($id);
+		}
+
+		public function put_moveArticle($id, $id_article, $moveTo)
+		{
+			$article	=	Model_Articles::getById($id_article);
+
+			Model_Articles::updateArticlePosition($article, $moveTo);
+
 			$this->get_index($id);
 		}
 	}

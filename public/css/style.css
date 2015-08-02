@@ -223,6 +223,14 @@ form {
 	margin-bottom: 10px;
 }
 
+form input[type="submit"] {
+	cursor: pointer;
+}
+
+table form {
+	display: inline;
+}
+
 fieldset {
 	display: inline-block;
 	border: 1px solid #222;
