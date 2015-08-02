@@ -4,3 +4,4 @@
 [submodule "application/vendors/EntityPHP"]
 	path = application/vendors/EntityPHP
 	url = https://github.com/adrien-gueret/EntityPHP.git
+	branch = master
