@@ -40,9 +40,9 @@
 				return;
 			}
 
-			$articles = $newspaper->load('articles');
+			$articles = Model_Articles::getFromNewspaper($newspaper);
 
-			if ($articles->isEmpty())
+			if (empty($articles))
 				$tpl_articles = Eliya\Tpl::get('newspapers/no_articles');
 			else
 				$tpl_articles = Eliya\Tpl::get('newspapers/articles', ['articles' => $articles]);

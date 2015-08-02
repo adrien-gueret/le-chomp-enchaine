@@ -366,3 +366,16 @@ article.card-list > a, article.card-list > a:visited, article.card-list > a:hove
 	padding-right: 3px;
 	border: 0;
 }
+
+.card-list .section-name {
+	text-align: left;
+	margin: 0;
+	padding: 5px;
+	background-color: rgba(0, 0, 0, .6);
+	color: #fff;
+	font-style: italic;
+	position: absolute;
+	left: 3px;
+	top: 3px;
+	z-index: 1;
+}

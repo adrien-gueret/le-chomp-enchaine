@@ -45,6 +45,7 @@
 			]);
 
 			$article->load('author');
+			$article->load('newspaper');
 
 			Model_Articles::update($article);
 

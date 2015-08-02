@@ -14,9 +14,9 @@
 			}
 
 			$tpl_articles	=	null;
-			$articles		=	$newspaper->load('articles');
+			$articles		=	Model_Articles::getFromNewspaper($newspaper);
 
-			if ($articles->isEmpty()) {
+			if (empty($articles)) {
 				$tpl_articles	=	\Eliya\Tpl::get('admin/newspapers/edit/articles/none');
 			} else {
 				$tpl_articles	=	\Eliya\Tpl::get('admin/newspapers/edit/articles/list', [
@@ -35,7 +35,7 @@
 				foreach($unpublished_articles as $key => $article) {
 					$is_last_index = $key + 1 === $total_articles;
 
-					$open_optgroup = $article->id_section !== $last_id_section;
+					$open_optgroup = $article->section_id !== $last_id_section;
 					$close_optgroup = $open_optgroup && $last_id_section !== null || $is_last_index;
 
 					$tpl_unpublished_articles .= \Eliya\Tpl::get('common/forms/option', [
@@ -46,7 +46,7 @@
 						'group_name' => $article->section_name,
 					]);
 
-					$last_id_section = $article->id_section;
+					$last_id_section = $article->section_id;
 				}
 			}
 
@@ -68,9 +68,6 @@
 				'date_publication'	=>	$isPublished ? $_SERVER['REQUEST_TIME'] : null,
 			]);
 
-			// Don't forget to load articles before update newspaper otherwise they'll all be unlinked!
-			$newspaper->load('articles');
-
 			Model_Newspapers::update($newspaper);
 
 			$this->get_index($id);
@@ -81,18 +78,23 @@
 			$newspaper	=	Model_Newspapers::getById($id);
 			$article	=	Model_Articles::getById($id_article);
 
-			$newspaper->load('articles')->push($article);
-			Model_Newspapers::update($newspaper);
+			$article->prop('newspaper', $newspaper);
+			$article->load('author');
+			$article->load('section');
+
+			Model_Articles::update($article);
 			$this->get_index($id);
 		}
 
 		public function put_removeArticle($id, $id_article)
 		{
-			$newspaper	=	Model_Newspapers::getById($id);
 			$article	=	Model_Articles::getById($id_article);
 
-			$newspaper->load('articles')->remove($article);
-			Model_Newspapers::update($newspaper);
+			$article->prop('newspaper', null);
+			$article->load('author');
+			$article->load('section');
+
+			Model_Articles::update($article);
 			$this->get_index($id);
 		}
 	}

@@ -10,7 +10,6 @@
 				return;
 			}
 
-			$newspaper = Model_Newspapers::getByIdArticle($article->getId());
 			$isPublished = ! empty($newspaper) && ! is_null($newspaper->prop('date_publication'));
 			$canReadUnpublished = $this->_currentUser->hasPermission(Model_Groups::PERM_READ_UNPUBLISHED_ARTICLES);
 
@@ -42,7 +41,7 @@
 
 			$this->response->set(\Eliya\Tpl::get('articles/article', [
 				'article' 	=> $article,
-				'newspaper' => $newspaper,
+				'newspaper' => $article->load('newspaper'),
 			]));
 		}
 	}
