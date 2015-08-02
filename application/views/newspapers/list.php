@@ -2,7 +2,7 @@
 	<?php foreach($view->newspapers as $newspaper): ?>
 		<article class="card-list">
 			<a href="<?= $newspaper->getUrl(); ?>">
-				<figure >
+				<figure>
 					<img src="<?= $newspaper->getMainPictureURL(); ?>" alt="" />
 					<figcaption>
 						<h2><?= $newspaper->prop('name'); ?></h2>

@@ -291,6 +291,10 @@ textarea.article.introduction {
 	padding: 3px;
 }
 
+.card-list.article {
+	height: 180px;
+}
+
 .card-list:hover {
 	box-shadow: 0 0 5px 0 #000;
 }
@@ -300,6 +304,10 @@ textarea.article.introduction {
 		width: auto;
 		height: 80px;
 		display: block;
+	}
+
+	.card-list.article {
+		height: 120px;
 	}
 }
 
@@ -316,6 +324,9 @@ article.card-list > a, article.card-list > a:visited, article.card-list > a:hove
 	height: 100%;
 	text-align: left;
 	background-color: #e3e3e3;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
 }
 
 .card-list figure figcaption {
@@ -330,6 +341,22 @@ article.card-list > a, article.card-list > a:visited, article.card-list > a:hove
 	line-height: 1em;
 	height: 2em;
 	overflow: hidden;
+}
+
+.card-list.article figcaption {
+	background-color: rgba(0, 0, 0, .6);
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	font-size: .8em;
+	color: #fff;
+}
+
+.card-list.article figcaption h2 {
+	margin: 0;
+	line-height: normal;
+	height: auto;
 }
 
 .card-list figure img {
