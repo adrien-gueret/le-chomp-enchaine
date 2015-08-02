@@ -1,6 +1,7 @@
 [submodule "system"]
 	path = system
 	url = https://github.com/adrien-gueret/Eliya.git
+	branch = master
 [submodule "application/vendors/EntityPHP"]
 	path = application/vendors/EntityPHP
 	url = https://github.com/adrien-gueret/EntityPHP.git
