@@ -21,7 +21,7 @@
 			$canReadUnpublished = $this->_currentUser->hasPermission(Model_Groups::PERM_READ_UNPUBLISHED_ARTICLES);
 
 			if($canReadUnpublished)
-				$articles = $author->getArticles();
+				$articles = $author->getLinkedArticles();
 			else
 				$articles = $author->getPublishedArticles();
 
