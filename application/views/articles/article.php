@@ -14,4 +14,21 @@
 	</aside>
 	<p class="article-introduction"><?= $view->article->prop('introduction'); ?></p>
 	<article ng-bind-html="readCtrl.currentArticle.content | markdown"></article>
+
+	<footer class="article-infos">
+		<div class="other-articles card-list">
+			<span>❮ Nintendo et DeNA : que penser de cette alliance ?</span>
+		</div>
+		<div class="author">
+			Rédigé par
+			<b><a href="<?= $view->article->prop('author')->getUrl(); ?>"><?= $view->article->prop('author')->prop('username'); ?></a></b>
+			<?php if ( ! empty($view->newspaper)): ?>
+				pour le journal
+				<b>"<a href="<?= $view->newspaper->getUrl(); ?>"><?= $view->newspaper->prop('name'); ?></a>"</b>
+			<?php endif; ?>
+		</div>
+		<div class="other-articles card-list">
+			<span>Les caméos de Mario dans les autres jeux vidéo ❯</span>
+		</div>
+	</footer>
 </main>

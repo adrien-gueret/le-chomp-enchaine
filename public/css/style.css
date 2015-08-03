@@ -139,6 +139,50 @@ main > aside.article-infos {
 	background-color: #e3e3e3;
 }
 
+main > footer.article-infos {
+	font-size: .9em;
+	display: flex;
+	justify-content: space-between;
+	text-align: center;
+}
+
+main > footer.article-infos .other-articles {
+	width: 20%;
+	height: auto;
+	text-align: left;
+	margin: auto;
+	background-size: cover;
+	background-position: center;
+}
+
+.other-articles.hidden {
+	visibility: hidden;
+}
+
+.other-articles span {
+	background-image: linear-gradient(to bottom right, #fff, rgba(255, 255, 255, .6));
+	height: 100%;
+	display: inline-block;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+@media screen and (max-width: 900px) {
+	main > footer.article-infos {
+		flex-direction: column;
+	}
+
+	main > footer.article-infos .other-articles {
+		order: 2;
+		margin: 5px 0;
+		width: auto;
+	}
+
+	main > footer .author {
+		order: 1;
+	}
+}
+
 article a, article a:visited {
 	text-decoration: none;
 	color: #008bff;
