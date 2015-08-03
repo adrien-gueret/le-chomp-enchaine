@@ -80,6 +80,13 @@
 				->exec();
 		}
 
+		public function getPublishedArticles()
+		{
+			return Model_Articles::createRequest()
+				->where('author.id = ? AND newspaper.date_publication IS NOT NULL', [$this->getId()])
+				->exec();
+		}
+
 		public function hasPermission($permission_name)
 		{
 			return $this->load('usergroup')->hasPermission($permission_name);
