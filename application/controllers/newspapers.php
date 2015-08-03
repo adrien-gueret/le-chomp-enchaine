@@ -45,7 +45,7 @@
 			if (empty($articles))
 				$tpl_articles = Eliya\Tpl::get('newspapers/no_articles');
 			else
-				$tpl_articles = Eliya\Tpl::get('newspapers/articles', ['articles' => $articles]);
+				$tpl_articles = Eliya\Tpl::get('common/articles/list', ['articles' => $articles]);
 
 			$this->response->set(Eliya\Tpl::get('newspapers/details', [
 				'newspaper' => $newspaper,
