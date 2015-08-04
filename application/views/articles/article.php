@@ -27,4 +27,17 @@
 		</div>
 		<?= $view->tpl_next_article; ?>
 	</footer>
+
+	<hr />
+
+	<!-- Facebook comments -->
+	<div id="fb-root"></div>
+	<script src="//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.4&appId=<?= \Eliya\Config('main')->FACEBOOK['APP_ID']; ?>"></script>
+
+	<aside>
+		<div class="fb-comments"
+			 data-href="<?= $view->article->getUrl(); ?>"
+			 data-width="100%"
+			 data-numposts="10"></div>
+	</aside>
 </main>
