@@ -6,7 +6,7 @@
 	</header>
 	<aside class="article-infos">
 		Dans <b>"<?= $view->article->prop('section')->prop('name'); ?>"</b>
-		par <b><a href="<?= $view->article->prop('author')->getUrl(); ?>"><?= $view->article->prop('author')->prop('username'); ?></a></b>
+		par <b><a href="<?= $view->article->prop('author')->getUrl(); ?>"><?= $view->article->load('author')->prop('username'); ?></a></b>
 		| Dernière modification le <b><?= date('d/m/Y', strtotime($view->article->prop('date_last_update'))); ?></b>
 		<?php if ( ! empty($view->newspaper)): ?>
 			| Publié dans le journal <b>"<a href="<?= $view->newspaper->getUrl(); ?>"><?= $view->newspaper->prop('name'); ?></a>"</b>
@@ -16,19 +16,15 @@
 	<article ng-bind-html="readCtrl.currentArticle.content | markdown"></article>
 
 	<footer class="article-infos">
-		<div class="other-articles card-list">
-			<span>❮ Nintendo et DeNA : que penser de cette alliance ?</span>
-		</div>
+		<?= $view->tpl_previous_article; ?>
 		<div class="author">
 			Rédigé par
-			<b><a href="<?= $view->article->prop('author')->getUrl(); ?>"><?= $view->article->prop('author')->prop('username'); ?></a></b>
+			<b><a href="<?= $view->article->prop('author')->getUrl(); ?>"><?= $view->article->load('author')->prop('username'); ?></a></b>
 			<?php if ( ! empty($view->newspaper)): ?>
 				pour le journal
 				<b>"<a href="<?= $view->newspaper->getUrl(); ?>"><?= $view->newspaper->prop('name'); ?></a>"</b>
 			<?php endif; ?>
 		</div>
-		<div class="other-articles card-list">
-			<span>Les caméos de Mario dans les autres jeux vidéo ❯</span>
-		</div>
+		<?= $view->tpl_next_article; ?>
 	</footer>
 </main>

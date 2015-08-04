@@ -148,11 +148,17 @@ main > footer.article-infos {
 
 main > footer.article-infos .other-articles {
 	width: 20%;
+	display: block;
 	height: auto;
 	text-align: left;
 	margin: auto;
 	background-size: cover;
 	background-position: center;
+	color: inherit;
+}
+
+main > footer.article-infos .other-articles.next {
+	text-align: right;
 }
 
 .other-articles.hidden {
@@ -165,6 +171,7 @@ main > footer.article-infos .other-articles {
 	display: inline-block;
 	padding: 5px;
 	border-radius: 5px;
+	text-align: left;
 }
 
 @media screen and (max-width: 900px) {

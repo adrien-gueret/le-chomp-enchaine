@@ -54,6 +54,7 @@ class Model_Articles extends EntityPHP\Entity {
 			'introduction' => $article_data->introduction,
 			'content' => $article_data->content,
 			'date_last_update' => $article_data->date_last_update,
+			'position' => $article_data->position,
 			'author' => $author,
 			'section' => $section,
 			'newspaper' => $newspaper,
@@ -83,7 +84,8 @@ class Model_Articles extends EntityPHP\Entity {
 	public static function getFromNewspaper(Model_Newspapers $newspaper)
 	{
 		$articles = self::createRequest()
-						->select('id, title, introduction, content, date_last_update, author.username, author.id, section, newspaper')
+						->select('id, title, introduction, position,content, date_last_update,
+								author.username, author.id, section, newspaper')
 						->where('newspaper.id = ?', [$newspaper->getId()])
 						->orderBy('position')
 						->exec();
@@ -104,7 +106,8 @@ class Model_Articles extends EntityPHP\Entity {
 	public static function getFullDataById($id_article)
 	{
 		$article_data = static::createRequest()
-					->select('id, title, introduction, content, date_last_update, author.username, author.id, section, newspaper')
+					->select('id, title, introduction, position, content, date_last_update,
+							author.username, author.id, section, newspaper')
 					->where('id=?', [intval($id_article)])
 					->getOnly(1)
 					->exec();
@@ -151,6 +154,23 @@ class Model_Articles extends EntityPHP\Entity {
 			$query	.=	' WHERE ' . self::$id_name .' = ' . $article->id;
 			\EntityPHP\EntityRequest::executeSQL($query);
 		}
+	}
+
+	public function getPreviousArticle()
+	{
+		return self::createRequest()
+			->where('position < ? AND newspaper.id = ?', [$this->prop('position'), $this->load('newspaper')->getId()])
+			->getOnly(1)
+			->orderBy('position DESC')
+			->exec();
+	}
+
+	public function getNextArticle()
+	{
+		return self::createRequest()
+				->where('position > ? AND newspaper.id = ?', [$this->prop('position'), $this->load('newspaper')->getId()])
+				->getOnly(1)
+				->exec();
 	}
 
 	public function getUrl()

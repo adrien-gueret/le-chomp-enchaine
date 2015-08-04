@@ -39,9 +39,30 @@
 			\Eliya\Tpl::set('page_description', $article->prop('introduction'));
 			\Eliya\Tpl::set('canonical_url', $canonical_url);
 
+			$previousArticle = $article->getPreviousArticle();
+			$nextArticle = $article->getNextArticle();
+
+			if(empty($previousArticle)) {
+				$tpl_previous_article	=	\Eliya\Tpl::get('articles/no_sibbling_article');
+			} else {
+				$tpl_previous_article	=	\Eliya\Tpl::get('articles/previous_article_link', [
+					'article'	=>	$previousArticle,
+				]);
+			}
+
+			if(empty($nextArticle)) {
+				$tpl_next_article	=	\Eliya\Tpl::get('articles/no_sibbling_article');
+			} else {
+				$tpl_next_article	=	\Eliya\Tpl::get('articles/next_article_link', [
+					'article'	=>	$nextArticle,
+				]);
+			}
+
 			$this->response->set(\Eliya\Tpl::get('articles/article', [
-				'article' 	=> $article,
-				'newspaper' => $article->load('newspaper'),
+				'article' 				=>	$article,
+				'newspaper' 			=>	$article->load('newspaper'),
+				'tpl_previous_article'	=>	$tpl_previous_article,
+				'tpl_next_article'		=>	$tpl_next_article,
 			]));
 		}
 	}
