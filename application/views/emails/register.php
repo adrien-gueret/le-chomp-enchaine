@@ -11,10 +11,10 @@
 	<li><b>Mot de passe :</b> <?= $view->password; ?></li>
 </ul>
 <p>
-	Note que ce mot de passe a été généré aléatoirement pour toi : tu es le seul à la connaitre, ne le perd donc
+	Note que ce mot de passe a été généré aléatoirement pour toi : tu es le seul à la connaitre, ne le perds donc
 	pas ! Il n'est pas encore possible de le modifier pour le moment, mais ça arrivera peut-être si ça devient
 	nécessaire...
 </p>
 <p>
-	Aller, à très vite sur <em>Le Chomp Enchaîné</em> !
+	Allez, à très vite sur <em>Le Chomp Enchaîné</em> !
 </p>
