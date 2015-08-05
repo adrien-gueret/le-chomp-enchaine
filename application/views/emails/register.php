@@ -1,6 +1,6 @@
 <p>
 	Hello <b><?= $view->username; ?></b> !<br />
-	Ton compte de rédacteur sur <em>Le Chomp Enchaîné</em> vient d'être créé.
+	Ton compte de rÃ©dacteur sur <em>Le Chomp EnchaÃ®nÃ©</em> vient d'Ãªtre crÃ©Ã©.
 </p>
 <p>
 	Pour te connecter, il te suffit de te rendre sur <a href="<?= $view->login_url; ?>"><?= $view->login_url; ?></a>
@@ -11,10 +11,10 @@
 	<li><b>Mot de passe :</b> <?= $view->password; ?></li>
 </ul>
 <p>
-	Note que ce mot de passe a été généré aléatoirement pour toi : tu es le seul à la connaitre, ne le perd donc
-	pas ! Il n'est pas encore possible de le modifier pour le moment, mais ça arrivera peut-être si ça devient
-	nécessaire...
+	Note que ce mot de passe a Ã©tÃ© gÃ©nÃ©rÃ© alÃ©atoirement pour toi : tu es le seul Ã  la connaitre, ne le perd donc
+	pas ! Il n'est pas encore possible de le modifier pour le moment, mais Ã§a arrivera peut-Ãªtre si Ã§a devient
+	nÃ©cessaire...
 </p>
 <p>
-	Aller, à très vite sur <em>Le Chomp Enchaîné</em> !
+	Aller, Ã  trÃ¨s vite sur <em>Le Chomp EnchaÃ®nÃ©</em> !
 </p>

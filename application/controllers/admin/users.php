@@ -38,7 +38,7 @@
 				'login_url'	=>	BASE_URL.'admin/login',
 			]);
 
-			Library_Email::send($email, 'Bienvenue sur Le Chomp Enchaîné !', $email_content);
+			Library_Email::send($email, 'Bienvenue sur Le Chomp EnchaÃ®nÃ© !', $email_content);
 			$this->get_index();
 		}
 	}
