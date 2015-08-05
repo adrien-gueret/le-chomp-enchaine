@@ -64,7 +64,7 @@
 		public static function getAllWithGroupsInfos()
 		{
 			return self::createRequest()
-						->select('username, email, usergroup.group_name')
+						->select('id, username, email, usergroup.group_name')
 						->exec();
 		}
 
@@ -102,5 +102,19 @@
 		public function getUrl()
 		{
 			return BASE_URL.'authors/'.$this->getId().'-'.Library_String::makeUrlCompliant($this->username);
+		}
+
+		public function remove()
+		{
+			$articles = $this->getArticles();
+
+			// Change the author of each article to be able to keep it
+			foreach($articles as $article)
+			{
+				$article->prop('author', null);
+				Model_Articles::update($article);
+			}
+
+			$this->deleteById($this->getId());
 		}
 	}

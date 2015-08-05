@@ -41,4 +41,20 @@
 			Library_Email::send($email, 'Bienvenue sur Le Chomp Enchaîné !', $email_content);
 			$this->get_index();
 		}
+
+		public function put_removeUser($id_user)
+		{
+			if($this->_currentUser->getId() === $id_user)
+			{
+				$this->response->error('Vous ne pouvez pas vous supprimer vous-même !', 403);
+				return;
+			}
+
+			$user = Model_Users::getById($id_user);
+
+			if($user)
+				$user->remove();
+
+			$this->get_index();
+		}
 	}
