@@ -3,14 +3,17 @@
 	{
 		public function get_index($id_article = 0)
 		{
-			$article = Model_Articles::getFullDataById($id_article);
+			$article = Model_Articles::getById($id_article);
 
 			if (empty($article)) {
 				$this->response->error('L\'article demandé est introuvable.', 404);
 				return;
 			}
 
-			$isPublished = ! empty($newspaper) && ! is_null($newspaper->prop('date_publication'));
+			$newspaper = $article->load('newspaper');
+			$author = $article->load('author');
+
+			$isPublished = ! empty($newspaper) && ! is_null($newspaper->prop('date_publication')) && ! empty($author);
 			$canReadUnpublished = $this->_currentUser->hasPermission(Model_Groups::PERM_READ_UNPUBLISHED_ARTICLES);
 
 			if ( ! $isPublished && ! $canReadUnpublished) {

@@ -103,6 +103,7 @@ class Model_Articles extends EntityPHP\Entity {
 		return $formattedArticles;
 	}
 
+	// TODO: is now unused
 	public static function getFullDataById($id_article)
 	{
 		$article_data = static::createRequest()
@@ -158,6 +159,9 @@ class Model_Articles extends EntityPHP\Entity {
 
 	public function getPreviousArticle()
 	{
+		if(empty($this->load('newspaper')))
+			return null;
+
 		return self::createRequest()
 			->where('position < ? AND newspaper.id = ?', [$this->prop('position'), $this->load('newspaper')->getId()])
 			->getOnly(1)
@@ -167,6 +171,9 @@ class Model_Articles extends EntityPHP\Entity {
 
 	public function getNextArticle()
 	{
+		if(empty($this->load('newspaper')))
+			return null;
+
 		return self::createRequest()
 				->where('position > ? AND newspaper.id = ?', [$this->prop('position'), $this->load('newspaper')->getId()])
 				->getOnly(1)
