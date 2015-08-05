@@ -159,11 +159,12 @@ class Model_Articles extends EntityPHP\Entity {
 
 	public function getPreviousArticle()
 	{
-		if(empty($this->load('newspaper')))
+		$newspaper = $this->load('newspaper');
+		if(empty($newspaper))
 			return null;
 
 		return self::createRequest()
-			->where('position < ? AND newspaper.id = ?', [$this->prop('position'), $this->load('newspaper')->getId()])
+			->where('position < ? AND newspaper.id = ?', [$this->prop('position'), $newspaper->getId()])
 			->getOnly(1)
 			->orderBy('position DESC')
 			->exec();
@@ -171,11 +172,12 @@ class Model_Articles extends EntityPHP\Entity {
 
 	public function getNextArticle()
 	{
-		if(empty($this->load('newspaper')))
+		$newspaper = $this->load('newspaper');
+		if(empty($newspaper))
 			return null;
 
 		return self::createRequest()
-				->where('position > ? AND newspaper.id = ?', [$this->prop('position'), $this->load('newspaper')->getId()])
+				->where('position > ? AND newspaper.id = ?', [$this->prop('position'), $newspaper->getId()])
 				->getOnly(1)
 				->exec();
 	}

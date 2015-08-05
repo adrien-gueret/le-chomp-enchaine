@@ -5,10 +5,10 @@
 		<h1><?= $view->article->prop('title'); ?></h1>
 	</header>
 	<aside class="article-infos">
-		<?php if( ! empty($view->article->prop('section')) ): ?>
+		<?php if( $view->article->prop('section') !== null ): ?>
 			Dans <b>"<?= $view->article->prop('section')->prop('name'); ?>"</b>
 		<?php endif; ?>
-		<?php if( ! empty($view->article->prop('author')) ): ?>
+		<?php if( $view->article->prop('author') !== null ): ?>
 			par <b><a href="<?= $view->article->prop('author')->getUrl(); ?>"><?= $view->article->load('author')->prop('username'); ?></a></b>
 		<?php endif ?>
 		| Dernière modification le <b><?= date('d/m/Y', strtotime($view->article->prop('date_last_update'))); ?></b>
@@ -22,7 +22,7 @@
 	<footer class="article-infos">
 		<?= $view->tpl_previous_article; ?>
 		<div class="author">
-			<?php if( ! empty($view->article->prop('author')) ): ?>
+			<?php if( $view->article->prop('author') !== null ): ?>
 				Rédigé par
 				<b><a href="<?= $view->article->prop('author')->getUrl(); ?>"><?= $view->article->load('author')->prop('username'); ?></a></b>
 			<?php endif; ?>
