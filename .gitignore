@@ -12,8 +12,9 @@ nbproject/
 # hidden files created by Windows
 Thumbs.db
 desktop.ini
-# config file
-/application/configs/*.json
+# environment-dependent config files
+/application/configs/main.json
+/application/configs/assets.json
 .htaccess
 # images files
 /public/img/*.xcf
