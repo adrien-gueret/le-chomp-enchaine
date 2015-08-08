@@ -161,6 +161,16 @@ main > footer.article-infos .other-articles.next {
 	text-align: right;
 }
 
+main > footer .author {
+	height: auto;
+	padding: 10px;
+	cursor: default;
+}
+
+main > footer .author:hover {
+	box-shadow: none;
+}
+
 .other-articles.hidden {
 	visibility: hidden;
 }
@@ -190,12 +200,12 @@ main > footer.article-infos .other-articles.next {
 	}
 }
 
-article a, article a:visited {
+main a, main a:visited {
 	text-decoration: none;
 	color: #008bff;
 }
 
-article a:hover {
+main a:hover {
 	text-decoration: underline;
 }
 

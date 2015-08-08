@@ -21,7 +21,7 @@
 
 	<footer class="article-infos">
 		<?= $view->tpl_previous_article; ?>
-		<div class="author">
+		<div class="author card-list">
 			<?php if( $view->article->prop('author') !== null ): ?>
 				Rédigé par
 				<b><a href="<?= $view->article->prop('author')->getUrl(); ?>"><?= $view->article->load('author')->prop('username'); ?></a></b>
