@@ -42,7 +42,7 @@
 			$this->get_index();
 		}
 
-		public function put_removeUser($id_user)
+		public function delete_index($id_user)
 		{
 			if($this->_currentUser->getId() === $id_user)
 			{

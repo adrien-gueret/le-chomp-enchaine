@@ -15,9 +15,9 @@
 				<td><?= $user->usergroup_group_name; ?></td>
 				<td>
 					<?php if($view->currentUser->getId() !== $user->id): ?>
-					<form class="removeUser" action="<?= $view->base_url; ?>admin/users/removeUser"
+					<form class="removeUser" action="<?= $view->base_url; ?>admin/users"
 					  method="post">
-						<input type="hidden" name="__method__" value="PUT" />
+						<input type="hidden" name="__method__" value="DELETE" />
 						<input type="hidden" name="id_user" value="<?= $user->id; ?>" />
 						<input type="submit" value="Supprimer">
 					</form>
