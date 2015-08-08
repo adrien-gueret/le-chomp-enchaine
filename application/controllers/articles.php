@@ -23,6 +23,15 @@
 
 			$canonical_url = $article->getUrl();
 
+			$og_article = [
+				'publisher' => \Eliya\Config('main')->FACEBOOK['PAGE_URL'],
+				'section' => $article->load('section')->prop('name'),
+				'modified_time' => $article->prop('date_last_update'),
+			];
+
+			if ( ! empty($newspaper))
+				$og_article['published_time']	=	$newspaper->prop('date_publication');
+
 			Library_Facebook::setMetaOG([
 				'og' => [
 					'title'	=>	$article->prop('title'),
@@ -35,7 +44,8 @@
 				],
 				'fb' => [
 					'app_id' => \Eliya\Config('main')->FACEBOOK['APP_ID']
-				]
+				],
+				'article' => $og_article
 			]);
 
 			\Eliya\Tpl::set('page_title', $article->prop('title'));

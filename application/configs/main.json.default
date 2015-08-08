@@ -17,7 +17,8 @@
     "SALT": "my_salt",
     "SITE_NAME": "Le Chomp Enchaîné",
     "FACEBOOK": {
-        "APP_ID": "123456789"
+        "APP_ID": "123456789",
+        "PAGE_URL": "https://www.facebook.com/lechompenchaine"
     },
     "STATIC_URL": "http://localhost/public/"
 }
