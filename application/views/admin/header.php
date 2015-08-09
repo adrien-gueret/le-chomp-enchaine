@@ -8,6 +8,7 @@
 	<link rel="shortcut icon" type="image/x-icon" href="<?= Library_Assets::get('favicon.ico'); ?>" />
 	<?php include('application/views/common_js.php'); ?>
 	<script src="<?= Library_Assets::get('js/angular/file-reader/file-reader.js'); ?>"></script>
+	<script src="<?= Library_Assets::get('js/admin/delete.js'); ?>"></script>
 </head>
 <body>
 	<header>
