@@ -30,6 +30,9 @@
 					<a href="#">A propos</a>
 				</li>
 				<?php if($view->currentUser->isConnected()): ?>
+					<li>
+						<a href="<?= $view->base_url; ?>admin/articles">Admin</a>
+					</li>
 					<li class="logout_link">
 						<a href="<?= $view->base_url; ?>admin/login/out">Se déconnecter</a>
 					</li>
