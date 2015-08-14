@@ -10,7 +10,7 @@
 	<tbody>
 		<?php foreach($view->all_users as $user): ?>
 			<tr>
-				<td><?= $user->username; ?></td>
+				<td><a href="<?= $view->base_url ?>admin/users/edit?id=<?= $user->id; ?>"><?= $user->username; ?></a></td>
 				<td><?= $user->email; ?></td>
 				<td><?= $user->usergroup_group_name; ?></td>
 				<td>
