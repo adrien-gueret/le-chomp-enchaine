@@ -163,6 +163,7 @@ class Model_Articles extends EntityPHP\Entity {
 		return self::createRequest()
 				->where('position > ? AND newspaper.id = ?', [$this->prop('position'), $newspaper->getId()])
 				->getOnly(1)
+				->orderBy('position')
 				->exec();
 	}
 
