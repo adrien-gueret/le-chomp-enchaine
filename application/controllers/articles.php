@@ -16,7 +16,7 @@
 			$isPublished = ! empty($newspaper) && ! is_null($newspaper->prop('date_publication')) && ! empty($author);
 			$canReadUnpublished = $this->_currentUser->hasPermission(Model_Groups::PERM_READ_UNPUBLISHED_ARTICLES);
 
-			if ( ! $isPublished && ! $canReadUnpublished) {
+			if ( ! $isPublished && ! $canReadUnpublished && ! $this->_currentUser->equals($author)) {
 				$this->response->error('L\'article demandé n\'est pas ou plus publié.', 403);
 				return;
 			}
