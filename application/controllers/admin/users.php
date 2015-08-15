@@ -26,6 +26,16 @@
 
 		public function post_index($username, $email, $id_group)
 		{
+			$checkExisting = Model_Users::createRequest()
+								->where('username = ? OR email = ?', [$username, $email])
+								->exec();
+
+			if( ! $checkExisting->isEmpty() )
+			{
+				$this->response->error('Un utilisateur avec ce pseudo ou cette adresse existe déjà.', 403);
+				return;
+			}
+
 			$password = Library_String::generatePassword();
 			$group = Model_Groups::getById($id_group);
 
