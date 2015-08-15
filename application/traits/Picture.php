@@ -112,4 +112,30 @@ trait Trait_Picture
 
 		return chmod($target_path, 0777);
 	}
+
+	public function downloadPicture($picture_url)
+	{
+		do {
+			$file_name		=	uniqid('image_').'.png';
+			$physical_path	=	$this->_getMainPicturePhysicalFolder().$file_name;
+		} while(file_exists($physical_path));
+
+		$public_path	=	$this->_getMainPicturePublicFolder().$file_name;
+
+		$success	=	copy($picture_url, $physical_path);
+
+		return $success ? $public_path : false;
+	}
+
+	public function deletePicture($url)
+	{
+		$file_name		=	basename($url);
+		$physical_path	=	$this->_getMainPicturePhysicalFolder().$file_name;
+
+		if (file_exists($physical_path)) {
+			return unlink($physical_path);
+		}
+
+		return false;
+	}
 }

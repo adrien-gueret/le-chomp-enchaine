@@ -103,22 +103,6 @@ class Model_Articles extends EntityPHP\Entity {
 		return $formattedArticles;
 	}
 
-	// TODO: is now unused
-	public static function getFullDataById($id_article)
-	{
-		$article_data = static::createRequest()
-					->select('id, title, introduction, position, content, date_last_update,
-							author.username, author.id, section, newspaper')
-					->where('id=?', [intval($id_article)])
-					->getOnly(1)
-					->exec();
-
-		if (empty($article_data))
-			return null;
-
-		return self::_getArticleObjectFromData($article_data);
-	}
-
 	public static function updateArticlePosition(Model_Articles $article, $moveTo)
 	{
 		// Get current and next position
@@ -185,6 +169,34 @@ class Model_Articles extends EntityPHP\Entity {
 	public function getUrl()
 	{
 		return BASE_URL.'articles/'.$this->getId().'-'.Library_String::makeUrlCompliant($this->title);
+	}
+
+	public function getContentImagesUrl()
+	{
+		$content = $this->prop('content');
+		preg_match_all('#\[[a-zA-Z0-9_-]+\]: (https?:\/\/[^ ]+)(?:[\s]+|$)#isU', $content, $links);
+
+		$images_links = [];
+
+		if ( ! empty($links[1])) {
+			$regexps = [
+				'youtube_embed' => '/https?:\/\/www\.youtube\.com\/embed\/.+/i',
+				'soundcloud_embed' => '/https?:\/\/api\.soundcloud\.com\/tracks\/.+/i',
+				'mp3' => '/\.mp3(\?.*)?$/i',
+			];
+
+			$images_links	=	array_filter($links[1], function($link) use ($regexps) {
+				foreach ($regexps as $regexp) {
+					if (preg_match($regexp, $link)) {
+						return false;
+					}
+				}
+
+				return true;
+			});
+		}
+
+		return $images_links;
 	}
 
 	protected function _getMainPictureRootFolder()

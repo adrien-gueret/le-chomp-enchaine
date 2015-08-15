@@ -32,10 +32,19 @@
 
 		public function put_index($id, $title, $introduction, $content, $id_section, $base64img = null)
 		{
+			// First, get article to update
 			$article = Model_Articles::getById($id);
 
+			// Get all images from the last version
+			$old_images = array_filter($article->getContentImagesUrl(), function($link) {
+				// Keep only images stored in our own server
+				return strpos($link, STATIC_URL) !== false;
+			});
+
+			// Update main picture
 			$article->updateMainPicture($base64img);
 
+			// Update all other properties
 			$article->setProps([
 				'title'				=>	$title,
 				'introduction'		=>	$introduction,
@@ -44,6 +53,37 @@
 				'date_last_update'	=> $_SERVER['REQUEST_TIME']
 			]);
 
+			// Then get images after this update
+			$new_images = $article->getContentImagesUrl();
+
+			// Old images not in new images have to be removed
+			$images_to_remove = array_diff($old_images, $new_images);
+			foreach ($images_to_remove as $url) {
+				$article->deletePicture($url);
+			}
+
+			// New images not stored in our server have to be downloaded
+			$images_to_download = array_filter($new_images, function($link) {
+				return strpos($link, STATIC_URL) === false;
+			});
+
+			$urls_to_replace	=	[];
+			foreach ($images_to_download as $url) {
+				$public_url	=	$article->downloadPicture($url);
+
+				if (empty($public_url)) {
+					continue;
+				}
+
+				// Stored URL from our server where picture has been downloaded
+				$urls_to_replace[$url]	=	$public_url;
+			}
+
+			// Replace all occurences of downloaded images with the new public URLs
+			$content = strtr($content, $urls_to_replace);
+			$article->prop('content', $content);
+
+			// Don't forget to load author and newspaper to not erase them!
 			$article->load('author');
 			$article->load('newspaper');
 
