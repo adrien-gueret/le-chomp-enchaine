@@ -27,7 +27,7 @@
 					<a href="#">Rubriques</a>
 				</li>
 				<li>
-					<a href="#">A propos</a>
+					<a href="<?= $view->base_url; ?>about">A propos</a>
 				</li>
 				<?php if($view->currentUser->isConnected()): ?>
 					<li>
