@@ -46,7 +46,7 @@ class Controller_admin_users_edit extends Controller_admin_users
 
 		Model_Users::update($user);
 
-		Controller_admin_users::get_index();
+		$this->response->redirect('../users', 200);
 	}
 }
 ?>
