@@ -36,6 +36,9 @@
 							<a href="<?= $view->base_url; ?>admin/users">Utilisateurs</a>
 						</li>
 					<?php endif; ?>
+					<li>
+						<a href="<?= $view->base_url; ?>admin/users/edit/profil">Profil</a>
+					</li>
 					<li class="logout_link">
 						<a href="<?= $view->base_url; ?>admin/login/out">Se déconnecter</a>
 					</li>
