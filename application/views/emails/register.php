@@ -11,9 +11,8 @@
 	<li><b>Mot de passe :</b> <?= $view->password; ?></li>
 </ul>
 <p>
-	Note que ce mot de passe a été généré aléatoirement pour toi : tu es le seul à la connaitre, ne le perds donc
-	pas ! Il n'est pas encore possible de le modifier pour le moment, mais ça arrivera peut-être si ça devient
-	nécessaire...
+	Note qu'il s'agit d'un mot de passe temporaire. Il est conseillé de le changer à ta première connexion, en cliquant sur le lien "Profil".
+	Ce n'est pas obligatoire, mais c'est mieux !
 </p>
 <p>
 	Allez, à très vite sur <em>Le Chomp Enchaîné</em> !
