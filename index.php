@@ -55,3 +55,6 @@
 	}
 
 	$response->render();
+
+	if($response->isError())
+		error_log("Error - " . $response->status() . " - Request: ". $_SERVER['REQUEST_URI'], 4);
