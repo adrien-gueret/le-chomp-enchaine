@@ -84,6 +84,10 @@
 				}
 				// Else we consider it's an image
 				else {
+					// Rewrite local images to be protocol agnostic
+					if(href.indexOf("http://static.lechompenchaine.fr") > -1)
+						href = href.substr(5);
+
 					var imageTitle = escapedTitle ? ' title="' + escapedTitle + '"' : '';
 					media = '<img src="' + href + '" alt="Image"' + imageTitle + ' />';
 					mediaType = 'image';
