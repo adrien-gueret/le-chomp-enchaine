@@ -8,21 +8,21 @@
 		</tr>
 	</thead>
 	<tbody>
-		<?php foreach($view->all_newspapers as $newspapers): ?>
+		<?php foreach($view->all_newspapers as $newspaper): ?>
 			<tr>
-				<td><?= $newspapers->getId(); ?></td>
-				<td><?= $newspapers->prop('name'); ?></td>
+				<td><?= $newspaper->getId(); ?></td>
+				<td><?= $newspaper->prop('name'); ?></td>
 				<td>
-					<?php if(!$newspapers->prop('date_publication')): ?>
+					<?php if(!$newspaper->prop('date_publication')): ?>
 						Non publié
 					<?php else: ?>
-						Le <?= date('d/m/Y à H:i', strtotime($newspapers->prop('date_publication'))); ?>
+						Le <?= date('d/m/Y à H:i', strtotime($newspaper->prop('date_publication'))); ?>
 					<?php endif; ?>
 				</td>
 				<td>
-					<a href="<?= $view->base_url; ?>admin/newspapers/edit?id=<?= $newspapers->getId(); ?>">Éditer</a>
+					<a href="<?= $view->base_url; ?>admin/newspapers/edit?id=<?= $newspaper->getId(); ?>">Éditer</a>
 					 | 
-					<a href="<?= $newspapers->getUrl() ?>">Lire</a>
+					<a href="<?= $newspaper->getUrl() ?>">Lire</a>
 				</td>
 			</tr>
 		<?php endforeach; ?>
