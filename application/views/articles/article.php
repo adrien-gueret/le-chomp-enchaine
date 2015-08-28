@@ -15,6 +15,9 @@
 		<?php if ( ! empty($view->newspaper)): ?>
 			| Publié dans le journal <b>"<a href="<?= $view->newspaper->getUrl(); ?>"><?= $view->newspaper->prop('name'); ?></a>"</b>
 		<?php endif; ?>
+		<?php if($view->currentUser->hasPermission(Model_Groups::PERM_EDIT_OTHER_ARTICLES) || $view->currentUser->equals($view->article->load('author'))): ?>
+			| <a href="<?= $view->base_url; ?>admin/articles/edit?id=<?= $view->article->getId(); ?>">Éditer cet aticle</a>
+		<?php endif ?>
 	</aside>
 	<p class="article-introduction"><?= $view->article->prop('introduction'); ?></p>
 	<article ng-bind-html="readCtrl.currentArticle.content | markdown"></article>
