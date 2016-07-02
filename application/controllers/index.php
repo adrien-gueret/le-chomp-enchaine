@@ -1,12 +1,23 @@
 <?php
 	class Controller_index extends Controller_main
 	{
+		const ARTICLES_BY_PAGE = 10;
+
 		public function get_index($page = 1)
 		{
-			$tpl_articles = Eliya\Tpl::get('common/articles/list', ['articles' => Model_Articles::getLast($page)]);
+			$articles 		=	Model_Articles::getLast($page, self::ARTICLES_BY_PAGE);
+			$tpl_articles	=	Eliya\Tpl::get('common/articles/list', ['articles' => $articles]);
+
+			$nbrPages		=	ceil(Model_Articles::count() / self::ARTICLES_BY_PAGE);
+
+			if($page == 1) {
+				\Eliya\Tpl::set('canonical_url', BASE_URL);
+			}
 
 			$this->response->set(\Eliya\Tpl::get('index/index', [
-				'tpl_articles' => $tpl_articles
+				'tpl_articles' => $tpl_articles,
+				'nbr_pages' => $nbrPages,
+				'current_page' => $page
 			]));
 		}
 	}

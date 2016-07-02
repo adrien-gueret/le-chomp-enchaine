@@ -207,6 +207,14 @@ main a:hover {
 	text-decoration: underline;
 }
 
+main nav {
+	text-align: center;
+}
+
+main nav .selected-link {
+	font-weight: bold;
+}
+
 article figure {
 	text-align: center;
 	clear: both;
