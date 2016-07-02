@@ -71,12 +71,14 @@ class Model_Articles extends EntityPHP\Entity {
 		return is_array($result) ? $result : [];
 	}
 
-	public static function getLast($total = 10)
+	public static function getLast($page = 1, $total = 10)
 	{
+		$startIndex = $page - 1;
+
 		return self::createRequest(true)
 			->where('is_published = ?', [1])
 			->orderBy('date_publication')
-			->getOnly($total)
+			->getOnly($total, $startIndex * $total)
 			->exec();
 	}
 
