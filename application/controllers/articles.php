@@ -10,12 +10,11 @@
 				return;
 			}
 
-			$newspaper = $article->load('newspaper');
 			$author = $article->load('author');
 
-			$isPublished = ! empty($newspaper) && ! is_null($newspaper->prop('date_publication')) && ! empty($author);
+			$isPublished = $article->prop('is_published');
 			$canReadUnpublished = $this->_currentUser->hasPermission(Model_Groups::PERM_READ_UNPUBLISHED_ARTICLES);
-
+			
 			if ( ! $isPublished && ! $canReadUnpublished && ! $this->_currentUser->equals($author)) {
 				$this->response->error('L\'article demandé n\'est pas ou plus publié.', 403);
 				return;
@@ -27,10 +26,8 @@
 				'publisher' => \Eliya\Config('main')->FACEBOOK['PAGE_URL'],
 				'section' => $article->load('section')->prop('name'),
 				'modified_time' => $article->prop('date_last_update'),
+				'published_time' => $article->prop('date_publication'),
 			];
-
-			if ( ! empty($newspaper))
-				$og_article['published_time']	=	$newspaper->prop('date_publication');
 
 			Library_Facebook::setMetaOG([
 				'og' => [
@@ -52,30 +49,8 @@
 			\Eliya\Tpl::set('page_description', $article->prop('introduction'));
 			\Eliya\Tpl::set('canonical_url', $canonical_url);
 
-			$previousArticle = $article->getPreviousArticle();
-			$nextArticle = $article->getNextArticle();
-
-			if(empty($previousArticle)) {
-				$tpl_previous_article	=	\Eliya\Tpl::get('articles/no_sibbling_article');
-			} else {
-				$tpl_previous_article	=	\Eliya\Tpl::get('articles/previous_article_link', [
-					'article'	=>	$previousArticle,
-				]);
-			}
-
-			if(empty($nextArticle)) {
-				$tpl_next_article	=	\Eliya\Tpl::get('articles/no_sibbling_article');
-			} else {
-				$tpl_next_article	=	\Eliya\Tpl::get('articles/next_article_link', [
-					'article'	=>	$nextArticle,
-				]);
-			}
-
 			$this->response->set(\Eliya\Tpl::get('articles/article', [
-				'article' 				=>	$article,
-				'newspaper' 			=>	$article->load('newspaper'),
-				'tpl_previous_article'	=>	$tpl_previous_article,
-				'tpl_next_article'		=>	$tpl_next_article,
+				'article' =>	$article,
 			]));
 		}
 	}

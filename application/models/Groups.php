@@ -5,14 +5,12 @@
 
 		protected $group_name;
 		protected $can_manage_sections = 0;
-		protected $can_manage_newspapers = 0;
 		protected $can_manage_users = 0;
 		protected $can_write_articles = 0;
 		protected $can_edit_other_articles = 0;
 		protected $can_read_unpublished_articles = 0;
 
 		const	PERM_MANAGE_SECTIONS = 'can_manage_sections',
-				PERM_MANAGE_NEWSPAPERS = 'can_manage_newspapers',
 				PERM_MANAGE_USERS = 'can_manage_users',
 				PERM_WRITE_ARTICLES = 'can_write_articles',
 				PERM_EDIT_OTHER_ARTICLES = 'can_edit_other_articles',

@@ -29,7 +29,6 @@
 	Model_Groups::add(new Model_Groups([
 		'group_name' => 'Anonymes',
 		'can_manage_sections' => 0,
-		'can_manage_newspapers' => 0,
 		'can_manage_users' => 0,
 		'can_write_articles' => 0,
 		'can_edit_other_articles' => 0,
@@ -39,7 +38,6 @@
 	$group_redactors = Model_Groups::add(new Model_Groups([
 		'group_name' => 'Rédacteurs',
 		'can_manage_sections' => 0,
-		'can_manage_newspapers' => 0,
 		'can_manage_users' => 0,
 		'can_write_articles' => 1,
 		'can_edit_other_articles' => 0,
@@ -49,7 +47,6 @@
 	Model_Groups::add(new Model_Groups([
 		'group_name' => 'Rédacteurs en chef',
 		'can_manage_sections' => 1,
-		'can_manage_newspapers' => 1,
 		'can_manage_users' => 0,
 		'can_write_articles' => 1,
 		'can_edit_other_articles' => 0,
@@ -59,7 +56,6 @@
 	$group_admin = Model_Groups::add(new Model_Groups([
 		'group_name' => 'Admins',
 		'can_manage_sections' => 1,
-		'can_manage_newspapers' => 1,
 		'can_manage_users' => 1,
 		'can_write_articles' => 1,
 		'can_edit_other_articles' => 1,

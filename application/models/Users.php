@@ -80,17 +80,10 @@
 				->exec();
 		}
 
-		public function getLinkedArticles()
-		{
-			return Model_Articles::createRequest()
-				->where('author.id = ? AND newspaper.id IS NOT NULL', [$this->getId()])
-				->exec();
-		}
-
 		public function getPublishedArticles()
 		{
 			return Model_Articles::createRequest()
-				->where('author.id = ? AND newspaper.date_publication IS NOT NULL', [$this->getId()])
+				->where('author.id = ? AND is_published = ?', [$this->getId(), 1])
 				->exec();
 		}
 

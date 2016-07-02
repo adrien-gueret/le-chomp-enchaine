@@ -1,8 +1,8 @@
 <h1><em>Le Chomp Enchaîné</em>, qu'est-ce que c'est ?</h1>
 
 <p>
-	Un fanzine presque-mensuel réalisé par des fans pour les fans de Nintendo. Chaque mois (à peu près !),
-	nous publierons un nouveau journal contenant des articles en rapport avec Nintendo, que ce soit
+	Un site réalisé par des fans pour les fans de Nintendo.
+	Nous publierons des articles en rapport avec Nintendo, que ce soit
 	sur l'actualité, des découvertes de jeux ou des dossiers sur divers sujets.
 </p>
 

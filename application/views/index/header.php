@@ -21,9 +21,6 @@
 		<nav>
 			<ul>
 				<li>
-					<a href="<?= $view->base_url; ?>">Journaux</a>
-				</li>
-				<li>
 					<a href="#">Rubriques</a>
 				</li>
 				<li>

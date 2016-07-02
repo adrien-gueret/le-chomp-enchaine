@@ -16,11 +16,6 @@
 		<nav>
 			<ul>
 				<?php if($view->currentUser->isConnected()): ?>
-					<?php if($view->currentUser->hasPermission(Model_Groups::PERM_MANAGE_NEWSPAPERS)): ?>
-						<li>
-							<a href="<?= $view->base_url; ?>admin/newspapers">Fanzines</a>
-						</li>
-					<?php endif; ?>
 					<?php if($view->currentUser->hasPermission(Model_Groups::PERM_WRITE_ARTICLES)): ?>
 						<li>
 							<a href="<?= $view->base_url; ?>admin/articles">Articles</a>

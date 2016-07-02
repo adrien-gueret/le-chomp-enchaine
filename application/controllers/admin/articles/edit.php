@@ -83,9 +83,8 @@
 			$content = strtr($content, $urls_to_replace);
 			$article->prop('content', $content);
 
-			// Don't forget to load author and newspaper to not erase them!
+			// Don't forget to load author to not erase them!
 			$article->load('author');
-			$article->load('newspaper');
 
 			Model_Articles::update($article);
 

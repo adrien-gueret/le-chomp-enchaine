@@ -10,8 +10,8 @@
 		se reposer encore un peu avant qu'il soit parfaitement d'attaque !
 	</p>
 	<p>
-		<em>Le Chomp Enchaîné</em>, ça sera quoi ? Un fanzine presque-mensuel réalisé par des fans pour les fans
-		de Nintendo. Chaque mois (à peu près !), retrouvez des articles en rapport avec Nintendo, que ce soit
+		<em>Le Chomp Enchaîné</em>, ça sera quoi ? Un site réalisé par des fans pour les fans
+		de Nintendo. Vous y toruverez des articles en rapport avec Nintendo, que ce soit
 		sur l'actualité, des découvertes de jeux ou des dossiers sur divers sujets.
 	</p>
 	<p>

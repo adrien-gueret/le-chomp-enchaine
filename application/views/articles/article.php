@@ -12,9 +12,6 @@
 			par <b><a href="<?= $view->article->prop('author')->getUrl(); ?>"><?= $view->article->load('author')->prop('username'); ?></a></b>
 		<?php endif ?>
 		| Dernière modification le <b><?= date('d/m/Y', strtotime($view->article->prop('date_last_update'))); ?></b>
-		<?php if ( ! empty($view->newspaper)): ?>
-			| Publié dans le journal <b>"<a href="<?= $view->newspaper->getUrl(); ?>"><?= $view->newspaper->prop('name'); ?></a>"</b>
-		<?php endif; ?>
 		<?php if($view->currentUser->hasPermission(Model_Groups::PERM_EDIT_OTHER_ARTICLES) || $view->currentUser->equals($view->article->load('author'))): ?>
 			| <a href="<?= $view->base_url; ?>admin/articles/edit?id=<?= $view->article->getId(); ?>">Éditer cet aticle</a>
 		<?php endif ?>
@@ -23,18 +20,12 @@
 	<article ng-bind-html="readCtrl.currentArticle.content | markdown"></article>
 
 	<footer class="article-infos">
-		<?= $view->tpl_previous_article; ?>
 		<div class="author card-list">
 			<?php if( $view->article->prop('author') !== null ): ?>
 				Rédigé par
 				<b><a href="<?= $view->article->prop('author')->getUrl(); ?>"><?= $view->article->load('author')->prop('username'); ?></a></b>
 			<?php endif; ?>
-			<?php if ( ! empty($view->newspaper)): ?>
-				pour le journal
-				<b>"<a href="<?= $view->newspaper->getUrl(); ?>"><?= $view->newspaper->prop('name'); ?></a>"</b>
-			<?php endif; ?>
 		</div>
-		<?= $view->tpl_next_article; ?>
 	</footer>
 
 	<hr />
