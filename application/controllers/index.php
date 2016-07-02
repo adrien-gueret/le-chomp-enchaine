@@ -3,10 +3,10 @@
 	{
 		public function get_index($page = 1)
 		{
-			$articles = Model_Articles::getLast($page);
-			
+			$tpl_articles = Eliya\Tpl::get('common/articles/list', ['articles' => Model_Articles::getLast($page)]);
+
 			$this->response->set(\Eliya\Tpl::get('index/index', [
-				'articles' => $articles
+				'tpl_articles' => $tpl_articles
 			]));
 		}
 	}
