@@ -64,11 +64,20 @@ class Model_Articles extends EntityPHP\Entity {
 	{
 		$result = self::createRequest(true)
 						->select('id, title, section')
-						->orderBy('section.id')
+						->orderBy('section.id DESC')
 						->where('is_published = ?', [0])
 						->exec();
 
 		return is_array($result) ? $result : [];
+	}
+
+	public static function getLast($total = 10)
+	{
+		return self::createRequest(true)
+			->where('is_published = ?', [1])
+			->orderBy('date_publication')
+			->getOnly($total)
+			->exec();
 	}
 
 	public function getUrl()

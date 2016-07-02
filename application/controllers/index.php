@@ -3,6 +3,10 @@
 	{
 		public function get_index()
 		{
-			$this->response->set(\Eliya\Tpl::get('index/index'));
+			$articles = Model_Articles::getLast();
+			
+			$this->response->set(\Eliya\Tpl::get('index/index', [
+				'articles' => $articles
+			]));
 		}
 	}

@@ -1,20 +1,16 @@
-<article>
-	<h2>Le Chomp Enchaîné arrive prochainement !</h2>
-	<figure>
-		<img src="https://orig03.deviantart.net/cbf4/f/2007/056/4/b/chain_chomp_lullaby_by_morvian.png" alt="On arrive bientôt !" />
-		<figcaption>Fan-art réalisé par <a href="https://www.deviantart.com/art/Chain-Chomp-Lullaby-49524042">Morvian</a></figcaption>
-	</figure>
-
-	<p>
-		<em>Le Chomp Enchaîné</em> est déjà en ligne, mais il n'est pas encore tout à fait prêt... Laissons-le
-		se reposer encore un peu avant qu'il soit parfaitement d'attaque !
-	</p>
-	<p>
-		<em>Le Chomp Enchaîné</em>, ça sera quoi ? Un site réalisé par des fans pour les fans
-		de Nintendo. Vous y toruverez des articles en rapport avec Nintendo, que ce soit
-		sur l'actualité, des découvertes de jeux ou des dossiers sur divers sujets.
-	</p>
-	<p>
-		À très bientôt sur <em>Le Chomp Enchaîné</em> !
-	</p>
-</article>
+<h2>Les derniers articles</h2>
+<div class="list-of-cards">
+	<?php foreach($view->articles as $article): ?>
+		<article class="card-list">
+			<a href="<?= $article->getUrl(); ?>">
+				<figure>
+					<img src="<?= $article->getMainPictureURL(); ?>" alt="" />
+					<figcaption>
+						<h2><?= $article->prop('title'); ?></h2>
+						<small>Publié le <?= date('d/m/Y', strtotime($article->prop('date_publication'))); ?></small>
+					</figcaption>
+				</figure>
+			</a>
+		</article>
+	<?php endforeach; ?>
+</div>
