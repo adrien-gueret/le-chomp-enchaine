@@ -71,15 +71,44 @@ class Model_Articles extends EntityPHP\Entity {
 		return is_array($result) ? $result : [];
 	}
 
-	public static function getLast($page = 1, $total = 10)
+	public static function getLast($page = 1, $total = 10, Model_Categories $category = null)
 	{
 		$startIndex = $page - 1;
+		$where = 'is_published = ?';
+		$whereValues = [1];
+
+		if(!empty($category)) {
+			$where	.=	' AND category.id = ?';
+			$whereValues[]	=	$category->getId();
+		}
 
 		return self::createRequest(true)
-			->where('is_published = ?', [1])
-			->orderBy('date_publication')
-			->getOnly($total, $startIndex * $total)
-			->exec();
+						->where($where, $whereValues)
+						->orderBy('date_publication DESC')
+						->getOnly($total, $startIndex * $total)
+						->exec();
+	}
+
+	public static function countByCategory(Model_Categories $category)
+	{
+		return Model_Articles::count('category.id = ? AND is_published = ?', [$category->getId(), 1]);
+	}
+	public static function countAllByCategories()
+	{
+		$resultObjects = \EntityPHP\EntityRequest::executeSQL('
+			SELECT id_category, COUNT(id) AS total
+			FROM articles
+			WHERE is_published = 1
+			GROUP BY id_category '
+		);
+
+		$arrayToReturn = [];
+
+		foreach($resultObjects as $object) {
+			$arrayToReturn[$object->id_category] = $object->total;
+		}
+
+		return $arrayToReturn;
 	}
 
 	public function getUrl()

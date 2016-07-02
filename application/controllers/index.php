@@ -6,6 +6,13 @@
 		public function get_index($page = 1)
 		{
 			$articles 		=	Model_Articles::getLast($page, self::ARTICLES_BY_PAGE);
+
+			if ($articles->isEmpty())
+			{
+				$this->response->set(\Eliya\Tpl::get('index/no_articles'));
+				return;
+			}
+
 			$tpl_articles	=	Eliya\Tpl::get('common/articles/list', ['articles' => $articles]);
 
 			$nbrPages		=	ceil(Model_Articles::count() / self::ARTICLES_BY_PAGE);

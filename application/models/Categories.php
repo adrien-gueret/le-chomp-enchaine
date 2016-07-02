@@ -16,4 +16,9 @@
 				'name' => 'VARCHAR(255)'
 			];
 		}
+
+		public function getUrl()
+		{
+			return BASE_URL.'categories/'.$this->getId().'-'.Library_String::makeUrlCompliant($this->name);
+		}
 	}

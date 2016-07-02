@@ -6,7 +6,7 @@
 	</header>
 	<aside class="article-infos">
 		<?php if( $view->article->prop('category') !== null ): ?>
-			Dans <b>"<?= $view->article->prop('category')->prop('name'); ?>"</b>
+			Dans <a href="<?= $view->article->prop('category')->getUrl(); ?>"><b>"<?= $view->article->prop('category')->prop('name'); ?>"</b></a>
 		<?php endif; ?>
 		<?php if( $view->article->prop('author') !== null ): ?>
 			par <b><a href="<?= $view->article->prop('author')->getUrl(); ?>"><?= $view->article->load('author')->prop('username'); ?></a></b>

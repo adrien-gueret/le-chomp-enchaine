@@ -21,7 +21,7 @@
 		<nav>
 			<ul>
 				<li>
-					<a href="#">Catégories</a>
+					<a href="<?= $view->base_url; ?>categories">Catégories</a>
 				</li>
 				<li>
 					<a href="<?= $view->base_url; ?>about">A propos</a>

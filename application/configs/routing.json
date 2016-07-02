@@ -3,7 +3,8 @@
         "RULES"             :   {
             "([0-9]+)\/?" : ["index", "index", "page"],
             "articles/([0-9]+)(?:-[0-9a-z]+)+" : ["articles", "index", "id_article"],
-            "authors/([0-9]+)(?:-[0-9a-z]+)+" : ["authors", "index", "id_author"]
+            "authors/([0-9]+)(?:-[0-9a-z]+)+" : ["authors", "index", "id_author"],
+            "categories/([0-9]+)(?:-[0-9a-z]+)+(?:\/?([0-9]+)\/?)?" : ["categories", "index", "id_category", "page"]
         }
     }
 }

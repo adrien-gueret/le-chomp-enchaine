@@ -5,6 +5,18 @@
 		{
 			$article = Model_Articles::getById($id_article);
 
+			if(empty($article))
+			{
+				$this->response->error('L\'article demandé est introuvable.', 404);
+			}
+			else
+			{
+				$this->displayDetails($article);
+			}
+		}
+
+		private function displayDetails(Model_Articles $article)
+		{
 			if (empty($article)) {
 				$this->response->error('L\'article demandé est introuvable.', 404);
 				return;
@@ -14,7 +26,7 @@
 
 			$isPublished = $article->prop('is_published');
 			$canReadUnpublished = $this->_currentUser->hasPermission(Model_Groups::PERM_READ_UNPUBLISHED_ARTICLES);
-			
+
 			if ( ! $isPublished && ! $canReadUnpublished && ! $this->_currentUser->equals($author)) {
 				$this->response->error('L\'article demandé n\'est pas ou plus publié.', 403);
 				return;
