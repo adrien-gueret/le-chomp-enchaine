@@ -5,8 +5,8 @@
 		<h1><?= $view->article->prop('title'); ?></h1>
 	</header>
 	<aside class="article-infos">
-		<?php if( $view->article->prop('section') !== null ): ?>
-			Dans <b>"<?= $view->article->prop('section')->prop('name'); ?>"</b>
+		<?php if( $view->article->prop('category') !== null ): ?>
+			Dans <b>"<?= $view->article->prop('category')->prop('name'); ?>"</b>
 		<?php endif; ?>
 		<?php if( $view->article->prop('author') !== null ): ?>
 			par <b><a href="<?= $view->article->prop('author')->getUrl(); ?>"><?= $view->article->load('author')->prop('username'); ?></a></b>

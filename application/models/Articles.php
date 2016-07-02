@@ -12,7 +12,7 @@ class Model_Articles extends EntityPHP\Entity {
 	protected $date_last_update;
 	protected $is_published;
 	protected $author;
-	protected $section;
+	protected $category;
 
 	const	MOVE_TO_TOP = 1,
 			MOVE_TO_BOTTOM = 2;
@@ -35,7 +35,7 @@ class Model_Articles extends EntityPHP\Entity {
 			'date_last_update' => 'DATETIME',
 			'is_published' => 'TINYINT(1)',
 			'author' => 'Model_Users',
-			'section' => 'Model_Sections',
+			'category' => 'Model_Categories',
 		];
 	}
 
@@ -44,8 +44,8 @@ class Model_Articles extends EntityPHP\Entity {
 		$author = new Model_Users($article_data->author_username);
 		$author->prop('id', $article_data->author_id);
 
-		$section = new Model_Sections($article_data->section_name);
-		$section->prop('id', $article_data->section_id);
+		$category = new Model_Categories($article_data->category_name);
+		$category->prop('id', $article_data->category_id);
 
 		return new Model_Articles([
 			'id' => $article_data->id,
@@ -56,15 +56,15 @@ class Model_Articles extends EntityPHP\Entity {
 			'date_last_update' => $article_data->date_last_update,
 			'is_published' => $article_data->is_published,
 			'author' => $author,
-			'section' => $section,
+			'category' => $category,
 		]);
 	}
 
 	public static function getUnpublished()
 	{
 		$result = self::createRequest(true)
-						->select('id, title, section')
-						->orderBy('section.id DESC')
+						->select('id, title, category')
+						->orderBy('category.id DESC')
 						->where('is_published = ?', [0])
 						->exec();
 

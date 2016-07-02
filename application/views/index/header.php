@@ -21,7 +21,7 @@
 		<nav>
 			<ul>
 				<li>
-					<a href="#">Rubriques</a>
+					<a href="#">Catégories</a>
 				</li>
 				<li>
 					<a href="<?= $view->base_url; ?>about">A propos</a>

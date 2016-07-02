@@ -21,9 +21,9 @@
 							<a href="<?= $view->base_url; ?>admin/articles">Articles</a>
 						</li>
 					<?php endif; ?>
-					<?php if($view->currentUser->hasPermission(Model_Groups::PERM_MANAGE_SECTIONS)): ?>
+					<?php if($view->currentUser->hasPermission(Model_Groups::PERM_MANAGE_CATEGORIES)): ?>
 						<li>
-							<a href="<?= $view->base_url; ?>admin/sections">Rubriques</a>
+							<a href="<?= $view->base_url; ?>admin/categories">Catégories</a>
 						</li>
 					<?php endif; ?>
 					<?php if($view->currentUser->hasPermission(Model_Groups::PERM_MANAGE_USERS)): ?>

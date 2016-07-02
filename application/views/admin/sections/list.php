@@ -6,10 +6,10 @@
 		</tr>
 	</thead>
 	<tbody>
-		<?php foreach($view->all_sections as $section): ?>
+		<?php foreach($view->all_categories as $category): ?>
 			<tr>
-				<td><?= $section->getId(); ?></td>
-				<td><?= $section->prop('name'); ?></td>
+				<td><?= $category->getId(); ?></td>
+				<td><?= $category->prop('name'); ?></td>
 			</tr>
 		<?php endforeach; ?>
 	</tbody>

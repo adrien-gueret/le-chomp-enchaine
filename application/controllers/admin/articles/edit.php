@@ -24,13 +24,13 @@
 			$article->fileSrc = $article->getMainPictureURL();
 
 			$this->response->set(\Eliya\Tpl::get('admin/articles/edit/index', [
-				'article'		=>	$article,
-				'section'		=>	$article->load('section'),
-				'all_sections'	=>	Model_Sections::getAll()
+				'article'			=>	$article,
+				'category'			=>	$article->load('category'),
+				'all_categories'	=>	Model_Categories::getAll()
 			]));
 		}
 
-		public function put_index($id, $title, $introduction, $content, $id_section, $base64img = null)
+		public function put_index($id, $title, $introduction, $content, $id_category, $base64img = null)
 		{
 			// First, get article to update
 			$article = Model_Articles::getById($id);
@@ -49,7 +49,7 @@
 				'title'				=>	$title,
 				'introduction'		=>	$introduction,
 				'content'			=>	$content,
-				'section'			=>	Model_Sections::getById($id_section),
+				'category'			=>	Model_Categories::getById($id_category),
 				'date_last_update'	=> $_SERVER['REQUEST_TIME']
 			]);
 

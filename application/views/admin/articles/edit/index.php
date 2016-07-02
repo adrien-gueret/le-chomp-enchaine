@@ -24,11 +24,11 @@
 					   name="title"
 					   ng-model="editCtrl.currentArticle.title"
 					   required /><br />
-				<label for="article-section">Rubrique : </label>
-				<select id="article-section" name="id_section" ng-model="editCtrl.currentArticle.section.id">
-					<?php foreach($view->all_sections as $section): ?>
-						<option value="<?= $section->getId(); ?>">
-							<?= $section->prop('name'); ?>
+				<label for="article-category">Catégorie : </label>
+				<select id="article-category" name="id_category" ng-model="editCtrl.currentArticle.category.id">
+					<?php foreach($view->all_categories as $category): ?>
+						<option value="<?= $category->getId(); ?>">
+							<?= $category->prop('name'); ?>
 						</option>
 					<?php endforeach; ?>
 				</select><br />

@@ -423,7 +423,7 @@ article.card-list > a, article.card-list > a:visited, article.card-list > a:hove
 	border: 0;
 }
 
-.card-list .section-name {
+.card-list .category-name {
 	text-align: left;
 	margin: 0;
 	padding: 5px;

@@ -24,7 +24,7 @@
 
 			$og_article = [
 				'publisher' => \Eliya\Config('main')->FACEBOOK['PAGE_URL'],
-				'section' => $article->load('section')->prop('name'),
+				'category' => $article->load('category')->prop('name'),
 				'modified_time' => $article->prop('date_last_update'),
 				'published_time' => $article->prop('date_publication'),
 			];

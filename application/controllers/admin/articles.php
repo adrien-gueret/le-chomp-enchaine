@@ -19,16 +19,16 @@
 			}
 
 			$this->response->set(\Eliya\Tpl::get('admin/articles/index', [
-				'tpl_articles' => $tpl_articles,
-				'sections'	=>	Model_Sections::getAll()
+				'tpl_articles' 	=> $tpl_articles,
+				'categories'	=>	Model_Categories::getAll()
 			]));
 		}
 
-		public function post_index($title, $id_section)
+		public function post_index($title, $id_category)
 		{
 			$newArticle = new Model_Articles([
 				'title'		=>	$title,
-				'section'	=>	Model_Sections::getById($id_section),
+				'category'	=>	Model_Categories::getById($id_category),
 				'author'	=>	$this->_currentUser
 			]);
 

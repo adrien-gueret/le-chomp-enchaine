@@ -6,10 +6,10 @@
 		<legend>Créer un nouvel article</legend>
 		<label for="article_title">Titre : </label>
 		<input type="text" id="article_title" placeholder="Titre de l'article" name="title" required /><br />
-		<label for="article_section">Rubrique: </label>
-		<select id="article_section" name="id_section">
-			<?php foreach($view->sections as $section): ?>
-				<option value="<?= $section->getId(); ?>"><?= $section->prop('name'); ?></option>
+		<label for="article_category">Catégorie: </label>
+		<select id="article_category" name="id_category">
+			<?php foreach($view->categories as $category): ?>
+				<option value="<?= $category->getId(); ?>"><?= $category->prop('name'); ?></option>
 			<?php endforeach; ?>
 		</select>
 		<p><input type="submit" value="Créer" /></p>

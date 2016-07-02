@@ -1,7 +1,7 @@
 <?php
-	class Model_Sections extends EntityPHP\Entity
+	class Model_Categories extends EntityPHP\Entity
 	{
-		protected static $table_name = 'sections';
+		protected static $table_name = 'categories';
 
 		protected $name;
 
