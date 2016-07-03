@@ -220,10 +220,6 @@ article figure {
 	clear: both;
 }
 
-article figure.video.left, article figure.video.right {
-	width: 20%;
-}
-
 article figure.preview {
 	width: 200px;
 	text-align: center;
@@ -444,7 +440,13 @@ article.card-list > a, article.card-list > a:visited, article.card-list > a:hove
 	z-index: 1;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (min-width: 900px) {
+	article figure.video.left, article figure.video.right {
+		width: 40%;
+	}
+}
+
+@media screen and (max-width: 899px) {
 	.card-list {
 		width: auto;
 		height: 80px;
@@ -457,5 +459,16 @@ article.card-list > a, article.card-list > a:visited, article.card-list > a:hove
 
 	.card-list.article {
 		height: 120px;
+	}
+
+	article figure.left, article figure.right {
+		text-align: center;
+		float: none;
+		width: auto;
+	}
+
+	article figure.center div {
+		width: 100%;
+		padding-top: 56.25%;
 	}
 }
