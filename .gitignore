@@ -18,3 +18,4 @@ desktop.ini
 .htaccess
 # images files
 /public/img/articles/*
+/public/img/categories/*
