@@ -32,6 +32,6 @@
 
 		protected function _getAppendedTimestamp()
 		{
-			return '';
+			return 1;
 		}
 	}

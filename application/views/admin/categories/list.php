@@ -3,6 +3,7 @@
 		<tr>
 			<th>ID</th>
 			<th>Nom</th>
+			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -10,6 +11,9 @@
 			<tr>
 				<td><?= $category->getId(); ?></td>
 				<td><?= $category->prop('name'); ?></td>
+				<td>
+					<a href="<?= $view->base_url; ?>admin/categories/edit?id=<?= $category->getId(); ?>">Éditer</a>
+				</td>
 			</tr>
 		<?php endforeach; ?>
 	</tbody>

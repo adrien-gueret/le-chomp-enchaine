@@ -18,15 +18,21 @@
 				]);
 			}
 
+			$tpl_form	=	\Eliya\Tpl::get('admin/categories/form', [
+				'edit_mode'			=>	false,
+				'end_action_url'	=>	''
+			]);
+
 			$this->response->set(\Eliya\Tpl::get('admin/categories/index', [
-				'tpl_categories' => $tpl_categories
+				'tpl_categories'	=> $tpl_categories,
+				'tpl_form'			=> $tpl_form,
 			]));
 		}
 
 		public function post_index($name, $base64img)
 		{
 			$category = Model_Categories::add(new Model_Categories($name));
-			$category->updateMainPicture($base64img);
+			$category->updateMainPicture($base64img, false);
 			$this->get_index();
 		}
 	}

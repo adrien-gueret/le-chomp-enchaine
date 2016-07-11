@@ -87,7 +87,7 @@ trait Trait_Picture
 		return false;
 	}
 
-	public function updateMainPicture($data_url = null)
+	public function updateMainPicture($data_url = null, $append_timestamp = true)
 	{
 		$image_data = null;
 
@@ -104,7 +104,7 @@ trait Trait_Picture
 
 		$resource	=	imagecreatefromstring(base64_decode($image_data));
 
-		$target_path =	$this->_getMainPicturePhysicalPath($_SERVER['REQUEST_TIME']);
+		$target_path =	$this->_getMainPicturePhysicalPath($append_timestamp ? $_SERVER['REQUEST_TIME'] : null);
 
 		imagealphablending($resource, true);
 		imagesavealpha($resource, true);
