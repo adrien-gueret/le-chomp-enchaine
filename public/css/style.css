@@ -272,7 +272,7 @@ article .right {
 	float: right;
 }
 
-article img {
+article img, table img {
 	display: inline-block;
 	max-width: 100%;
 	background-color: #fff;
@@ -292,6 +292,50 @@ form input[type="submit"] {
 
 table form {
 	display: inline;
+}
+
+main table {
+	width: 50%;
+	margin: auto;
+}
+
+main table img {
+	width: 200px;
+	height: auto;
+}
+
+main table td.title {
+	text-align: center;
+}
+
+td.title a, td.title a:visited, td.title a:hover {
+	color: #000;
+	text-decoration: none;
+}
+
+main table td.title h3, main table td.title p {
+	margin: 0;
+	padding: 0;
+}
+
+@media screen and (max-width: 900px) {
+	main table {
+		width: 100%;
+	}
+
+	main table img {
+		width: 100px;
+	}
+
+	main table .extra-link {
+		display: none;
+	}
+}
+
+main h3 {
+	font-family: 'Kaushan Script', cursive;
+	font-size: 1.5em;
+	text-align: center;
 }
 
 fieldset {

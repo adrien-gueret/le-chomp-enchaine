@@ -6,19 +6,17 @@
 <hr />
 
 <table>
-	<thead>
-		<tr>
-			<th>Nom</th>
-			<th>Total d'articles</th>
-			<th>Voir</th>
-		</tr>
-	</thead>
 	<tbody>
 		<?php foreach($view->categories as $category): ?>
 			<tr>
-				<td><?= $category->prop('name'); ?></td>
-				<td><?= $category->total_articles; ?></td>
-				<td>
+				<td><a href="<?= $category->getUrl(); ?>"><img src="<?= $category->getMainPictureUrl(); ?>" /></a></td>
+				<td class="title">
+					<a href="<?= $category->getUrl(); ?>">
+						<h3><?= $category->prop('name'); ?></h3>
+						<p><?= $category->total_articles; ?> article<?= $category->total_articles > 1 ? 's' : ''; ?></p>
+					</a>
+				</td>
+				<td class="extra-link">
 					<a href="<?= $category->getUrl(); ?>">Voir</a>
 				</td>
 			</tr>

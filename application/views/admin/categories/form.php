@@ -18,7 +18,7 @@
 		<article>
 			<figure class="preview">
 				<img ng-src="{{categoryCtrl.fileSrc}}" alt="Image" ng-if="categoryCtrl.fileSrc" />
-				<figcaption>700px * 400px</figcaption>
+				<figcaption>200px * 200px</figcaption>
 			</figure>
 		</article>
 		<p><input type="submit" value="<?= $view->edit_mode ? 'Editer' : 'Créer' ?>" /></p>
