@@ -12,6 +12,8 @@
 		<?php endif; ?>
 		<label for="category-name">Nom de la catégorie :</label>
 		<input id="category-name" type="text" name="name" value="<?= empty($view->category_name) ? '' : $view->category_name; ?>" required /><br />
+		<label for="category-description">Description :</label>
+		<textarea id="category-description" name="description" required><?= empty($view->category_description) ? '' : $view->category_description; ?></textarea><br />
 		<label for="category-image">Image de présentation : </label>
 		<input type="file" <?= $view->edit_mode ? '' : 'required' ?> file-reader="categoryCtrl.fileHandler($data)" id="category-image" />
 		<input type="hidden" name="base64img" value="{{categoryCtrl.base64img}}" ng-if="categoryCtrl.base64img" />

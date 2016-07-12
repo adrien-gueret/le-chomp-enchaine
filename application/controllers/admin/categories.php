@@ -29,9 +29,9 @@
 			]));
 		}
 
-		public function post_index($name, $base64img)
+		public function post_index($name, $description, $base64img)
 		{
-			$category = Model_Categories::add(new Model_Categories($name));
+			$category = Model_Categories::add(new Model_Categories($name, $description));
 			$category->updateMainPicture($base64img, false);
 			$this->get_index();
 		}

@@ -6,17 +6,20 @@
 		protected static $table_name = 'categories';
 
 		protected $name;
+		protected $description;
 
-		public function __construct($name = null)
+		public function __construct($name = null, $description = null)
 		{
 			parent::__construct();
 			$this->name = $name;
+			$this->description = $description;
 		}
 
 		public static function __structure()
 		{
 			return [
-				'name' => 'VARCHAR(255)'
+				'name' => 'VARCHAR(255)',
+				'description' => 'TEXT'
 			];
 		}
 

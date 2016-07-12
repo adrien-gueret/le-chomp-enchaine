@@ -294,44 +294,6 @@ table form {
 	display: inline;
 }
 
-main table {
-	width: 50%;
-	margin: auto;
-}
-
-main table img {
-	width: 200px;
-	height: auto;
-}
-
-main table td.title {
-	text-align: center;
-}
-
-td.title a, td.title a:visited, td.title a:hover {
-	color: #000;
-	text-decoration: none;
-}
-
-main table td.title h3, main table td.title p {
-	margin: 0;
-	padding: 0;
-}
-
-@media screen and (max-width: 900px) {
-	main table {
-		width: 100%;
-	}
-
-	main table img {
-		width: 100px;
-	}
-
-	main table .extra-link {
-		display: none;
-	}
-}
-
 main h3 {
 	font-family: 'Kaushan Script', cursive;
 	font-size: 1.5em;
@@ -410,6 +372,10 @@ textarea.article.introduction {
 	height: 180px;
 }
 
+.card-list.category {
+	height: 200px;
+}
+
 .card-list:hover {
 	box-shadow: 0 0 5px 0 #000;
 }
@@ -436,6 +402,7 @@ article.card-list > a, article.card-list > a:visited, article.card-list > a:hove
 	flex: 1;
 	padding: 5px;
 	font-style: normal;
+	overflow: hidden;
 }
 
 .card-list figcaption h2 {
@@ -443,6 +410,18 @@ article.card-list > a, article.card-list > a:visited, article.card-list > a:hove
 	margin-bottom: 5px;
 	line-height: 1em;
 	height: 2em;
+	overflow: hidden;
+}
+
+.card-list figcaption h3 {
+	margin: 0;
+	margin-bottom: 2px;
+	overflow: hidden;
+	line-height: 1em;
+}
+
+.card-list figcaption p {
+	margin: 0;
 	overflow: hidden;
 }
 
@@ -497,8 +476,12 @@ article.card-list > a, article.card-list > a:visited, article.card-list > a:hove
 		display: block;
 	}
 
-	.card-list figure img {
+	.card-list.article figure img {
 		max-width: 143px;
+	}
+
+	.card-list.category {
+		height: 150px;
 	}
 
 	.card-list.article {
