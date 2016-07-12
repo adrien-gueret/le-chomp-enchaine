@@ -403,6 +403,9 @@ article.card-list > a, article.card-list > a:visited, article.card-list > a:hove
 	padding: 5px;
 	font-style: normal;
 	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .card-list figcaption h2 {
@@ -414,8 +417,7 @@ article.card-list > a, article.card-list > a:visited, article.card-list > a:hove
 }
 
 .card-list figcaption h3 {
-	margin: 0;
-	margin-bottom: 2px;
+	margin-top: 0;
 	overflow: hidden;
 	line-height: 1em;
 }
