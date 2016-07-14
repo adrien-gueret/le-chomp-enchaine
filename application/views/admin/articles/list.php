@@ -17,8 +17,24 @@
 				</td>
 				<td>
 					<a href="<?= $view->base_url; ?>admin/articles/edit?id=<?= $article->getId(); ?>">Éditer</a>
-					 | 
+					|
 					<a href="<?= $article->getUrl() ?>">Lire</a>
+					|
+					<?php if($article->prop('is_published')): ?>
+						<form action="<?= $view->base_url; ?>admin/articles/edit/unpublish?id=<?= $article->getId(); ?>"
+							  method="post"
+							  data-publish="0">
+							<input type="hidden" name="__method__" value="PUT" />
+							<input type="submit" value="Dépublier" />
+						</form>
+					<?php else: ?>
+						<form action="<?= $view->base_url; ?>admin/articles/edit/publish?id=<?= $article->getId(); ?>"
+							  method="post"
+							  data-publish="1">
+							<input type="hidden" name="__method__" value="PUT" />
+							<input type="submit" value="Publier" />
+						</form>
+					<?php endif; ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>

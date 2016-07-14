@@ -93,6 +93,7 @@ class Model_Articles extends EntityPHP\Entity {
 	{
 		return Model_Articles::count('category.id = ? AND is_published = ?', [$category->getId(), 1]);
 	}
+
 	public static function countAllByCategories()
 	{
 		$resultObjects = \EntityPHP\EntityRequest::executeSQL('

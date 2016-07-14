@@ -15,6 +15,26 @@
 		<?php if($view->currentUser->hasPermission(Model_Groups::PERM_EDIT_OTHER_ARTICLES) || $view->currentUser->equals($view->article->load('author'))): ?>
 			| <a href="<?= $view->base_url; ?>admin/articles/edit?id=<?= $view->article->getId(); ?>">Éditer cet aticle</a>
 		<?php endif ?>
+		<?php if($view->currentUser->hasPermission(Model_Groups::PERM_PUBLISH_OTHER_ARTICLES) || $view->currentUser->equals($view->article->load('author'))): ?>
+			|
+			<?php if($view->article->prop('is_published')): ?>
+				<span class="publication-status published">Cet article est publié</span>
+				<form action="<?= $view->base_url; ?>admin/articles/edit/unpublish?id=<?= $view->article->getId(); ?>"
+					  method="post"
+					  data-publish="0">
+					<input type="hidden" name="__method__" value="PUT" />
+					<input type="submit" value="Dépublier" />
+				</form>
+			<?php else: ?>
+				<span class="publication-status unpublished">Cet article n'est PAS publié</span>
+				<form action="<?= $view->base_url; ?>admin/articles/edit/publish?id=<?= $view->article->getId(); ?>"
+					  method="post"
+					  data-publish="1">
+					<input type="hidden" name="__method__" value="PUT" />
+					<input type="submit" value="Publier" />
+				</form>
+			<?php endif; ?>
+		<?php endif ?>
 	</aside>
 	<p class="article-introduction"><?= $view->article->prop('introduction'); ?></p>
 	<article ng-bind-html="readCtrl.currentArticle.content | markdown"></article>

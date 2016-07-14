@@ -32,6 +32,7 @@
 		'can_manage_users' => 0,
 		'can_write_articles' => 0,
 		'can_edit_other_articles' => 0,
+		'can_publish_other_articles' => 0,
 		'can_read_unpublished_articles' => 0,
 	]));
 
@@ -41,6 +42,7 @@
 		'can_manage_users' => 0,
 		'can_write_articles' => 1,
 		'can_edit_other_articles' => 0,
+		'can_publish_other_articles' => 0,
 		'can_read_unpublished_articles' => 0,
 	]));
 
@@ -50,6 +52,7 @@
 		'can_manage_users' => 0,
 		'can_write_articles' => 1,
 		'can_edit_other_articles' => 0,
+		'can_publish_other_articles' => 1,
 		'can_read_unpublished_articles' => 1,
 	]));
 
@@ -59,5 +62,6 @@
 		'can_manage_users' => 1,
 		'can_write_articles' => 1,
 		'can_edit_other_articles' => 1,
+		'can_publish_other_articles' => 1,
 		'can_read_unpublished_articles' => 1,
 	]));

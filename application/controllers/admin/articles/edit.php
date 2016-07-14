@@ -90,4 +90,49 @@
 
 			$this->get_index($id);
 		}
+
+		public function put_publish($id)
+		{
+			$this->setPublishStatus($id, true);
+		}
+
+		public function put_unpublish($id)
+		{
+			$this->setPublishStatus($id, false);
+		}
+
+		protected function setPublishStatus($id, $published) {
+			$article = Model_Articles::getById($id);
+
+			if (empty($article)) {
+				$this->response
+					->status(404)
+					->redirectToFullErrorPage(false)
+					->set(\Eliya\Tpl::get('admin/articles/edit/not_found'));
+				return;
+			}
+
+			$author_is_current_user = $article->load('author')->equals($this->_currentUser);
+			$can_publish_other_articles = $this->_currentUser->hasPermission(Model_Groups::PERM_PUBLISH_OTHER_ARTICLES);
+
+			if ( ! $author_is_current_user && ! $can_publish_other_articles) {
+				$this->response->error('Vous ne pouvez pas modifier la publication de cet article.', 403);
+				return;
+			}
+
+			$date_publication = $article->prop('date_publication');
+
+			if ($published && empty($date_publication)) {
+				$article->prop('date_publication', $_SERVER['REQUEST_TIME']);
+			}
+
+			$article->prop('is_published', $published);
+
+			// Don't forget to load category to not erase it!
+			$article->load('category');
+
+			Model_Articles::update($article);
+
+			$this->response->redirect($this->request->getBaseURL().'articles?id_article='.$id, 200);
+		}
 	}

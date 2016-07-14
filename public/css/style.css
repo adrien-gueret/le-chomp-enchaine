@@ -139,6 +139,22 @@ main > aside.article-infos {
 	background-color: #e3e3e3;
 }
 
+main > aside.article-infos form {
+	display: inline;
+}
+
+main > aside.article-infos .publication-status {
+	font-weight: bold;
+}
+
+main > aside.article-infos .publication-status.published {
+	color: green;
+}
+
+main > aside.article-infos .publication-status.unpublished {
+	color: red;
+}
+
 main > footer.article-infos {
 	font-size: .9em;
 	text-align: center;
