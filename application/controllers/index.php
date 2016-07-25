@@ -15,7 +15,7 @@
 
 			$tpl_articles	=	Eliya\Tpl::get('common/articles/list', ['articles' => $articles]);
 
-			$nbrPages		=	ceil(Model_Articles::count() / self::ARTICLES_BY_PAGE);
+			$nbrPages		=	ceil(Model_Articles::count('is_published = ?', [1]) / self::ARTICLES_BY_PAGE);
 
 			if($page == 1) {
 				\Eliya\Tpl::set('canonical_url', BASE_URL);
