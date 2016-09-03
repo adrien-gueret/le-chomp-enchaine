@@ -77,6 +77,7 @@
 		{
 			return Model_Articles::createRequest()
 				->where('author.id = ?', [$this->getId()])
+				->orderBy('date_publication DESC')
 				->exec();
 		}
 
@@ -84,6 +85,7 @@
 		{
 			return Model_Articles::createRequest()
 				->where('author.id = ? AND is_published = ?', [$this->getId(), 1])
+				->orderBy('date_publication DESC')
 				->exec();
 		}
 
