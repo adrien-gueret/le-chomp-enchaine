@@ -20,6 +20,10 @@ abstract class Library_Facebook
 		];
 	}
 
+	public static function mustOgPropertyBeUrl($property) {
+		return $property === 'url' || $property === 'image';
+	}
+
 	public static function setMetaOG(Array $metas)
 	{
 		$tpl_facebook_meta_og = null;
@@ -34,6 +38,10 @@ abstract class Library_Facebook
 			foreach ($properties as $property => $value) {
 				if ( ! in_array($property, $structure[$type])) {
 					continue;
+				}
+
+				if (self::mustOgPropertyBeUrl($property) && parse_url($value, PHP_URL_SCHEME) === null) {
+					$value = 'https:'.$value;
 				}
 
 				$tpl_facebook_meta_og	.=	Eliya\Tpl::get('facebook/metas', [
