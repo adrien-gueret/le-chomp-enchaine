@@ -175,6 +175,19 @@ main > aside.article-infos {
 	background-color: #e3e3e3;
 }
 
+main > aside.share-links {
+	text-align: right;
+	padding-top: 16px;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+main > aside.share-links > * {
+	margin-left: 8px;
+}
+
 main > aside.article-infos form {
 	display: inline;
 }

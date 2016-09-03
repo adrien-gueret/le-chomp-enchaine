@@ -61,8 +61,23 @@
 			\Eliya\Tpl::set('page_description', $article->prop('introduction'));
 			\Eliya\Tpl::set('canonical_url', $canonical_url);
 
+			$category = $article->prop('category');
+
+			$twitterDefaultText = $article->prop('title');
+
+			if( $category !== null ) {
+				$twitterDefaultText = $category->prop('name').' - '.$twitterDefaultText;
+			}
+
+			$templateShareLinks = \Eliya\Tpl::get('articles/share_links', [
+				'url'					=>	$article->getUrl(),
+				'twitterDefaultText'	=>	$twitterDefaultText,
+			]);
+
 			$this->response->set(\Eliya\Tpl::get('articles/article', [
-				'article' =>	$article,
+				'article'				=>	$article,
+				'category'				=>	$category,
+				'templateShareLinks'	=>	$templateShareLinks,
 			]));
 		}
 	}
