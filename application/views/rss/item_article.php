@@ -9,6 +9,6 @@
   <?php if( $view->category !== null ): ?>
     <category><?= $view->category; ?></category>
   <?php endif ?>
-  <pubDate><?= date('d/m/Y H:i', strtotime($view->article->prop('date_publication'))); ?></pubDate>
+  <pubDate><?= date('r', strtotime($view->article->prop('date_publication'))); ?></pubDate>
   <guid isPermaLink="true"><?= $view->article->getUrl(); ?></guid>
 </item>
