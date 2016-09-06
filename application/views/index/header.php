@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="<?= $view->page_description; ?>" />
 	<link rel="stylesheet" type="text/css" href="<?= Library_Assets::get('css/style.css'); ?>" />
-	<link rel="shortcut icon" type="image/x-icon" href="<?= Library_Assets::get('favicon.ico'); ?>" />
+	<link rel="shortcut icon" type="image/x-icon" href="https:<?= Library_Assets::get('favicon.ico'); ?>" />
 	<link rel="alternate" type="application/rss+xml" title="Le Chomp Enchainé - RSS" href="<?= $view->base_url; ?>rss" />
 	<?php if(isset($view->canonical_url)): ?>
 		<link rel="canonical" href="<?= $view->canonical_url; ?>" />
