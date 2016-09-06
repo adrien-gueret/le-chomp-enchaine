@@ -138,4 +138,24 @@ trait Trait_Picture
 
 		return false;
 	}
+
+	public function getMainPictureMimeType()
+    {
+        $path = $this->_getMainPicturePhysicalPath();
+
+        if (!file_exists($path))
+            return null;
+
+        return image_type_to_mime_type(exif_imagetype($path));
+    }
+
+    public function getMainPictureSize()
+    {
+        $path = $this->_getMainPicturePhysicalPath();
+
+        if (!file_exists($path))
+            return 0;
+
+        return filesize($path);
+    }
 }
