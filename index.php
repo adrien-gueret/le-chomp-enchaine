@@ -6,6 +6,9 @@
 	//Init core
 	\Eliya\Core::init();
 
+    // Set cookies
+    session_set_cookie_params(86400); // Lifetime set to 24H
+
 	//Activate the session
 	session_start();
 
