@@ -154,4 +154,104 @@
 				}
 			};
 		})
+		.directive('markdownButtons', function() {
+			return {
+				restrict: 'E',
+				scope: {textarea: '@'},
+				template: '<div><button type="button" ng-click="wrapWith(\'*\')"><em>*Italique*</em></button>' +
+									'<button type="button" ng-click="wrapWith(\'__\')"><strong>__Gras__</strong></button>' +
+									'<button type="button" ng-click="insertBefore(\'## \')"><strong>## Titre</strong></button>' +
+									'<button type="button" ng-click="insertLink()"><ins>Lien</ins></button><br />' +
+									'<button type="button" ng-click="insertMedia(\'<=\')">&lt;=Média à gauche</button>' +
+									'<button type="button" ng-click="insertMedia(\'==\')">==Média centré</button>' +
+									'<button type="button" ng-click="insertMedia(\'=>\')">=&gt;Média à droite</button></div>',
+				controller: function($scope, $document) {
+					var textarea = $document[0].getElementById($scope.textarea);
+
+					if (!textarea) {
+						return;
+					}
+
+					function getTextareaInfo() {
+						return {
+							scrollTop: textarea.scrollTop,
+							selection: {
+								start: textarea.selectionStart,
+								end: textarea.selectionEnd
+							},
+							text: {
+								beforeSelected: textarea.value.substring(0, textarea.selectionStart),
+								afterSelected: textarea.value.substring(textarea.selectionEnd),
+								selected: textarea.value.substring(textarea.selectionStart, textarea.selectionEnd)
+							}
+						};
+					}
+
+					function validChange() {
+						textarea.focus();
+
+						var event = new Event('input');
+						textarea.dispatchEvent(event);
+					}
+
+					$scope.wrapWith = function(wrapperBefore, wrapperAfter) {
+						var textareaInfos = getTextareaInfo();
+						wrapperAfter = wrapperAfter || wrapperBefore;
+
+						textarea.value	=	textareaInfos.text.beforeSelected +
+															wrapperBefore +
+															textareaInfos.text.selected +
+															wrapperAfter +
+															textareaInfos.text.afterSelected;
+
+						textarea.selectionStart	=	textareaInfos.selection.start + wrapperBefore.length;
+						textarea.selectionEnd		=	textareaInfos.selection.start + textareaInfos.text.selected.length + wrapperBefore.length;
+
+						validChange();
+
+						textarea.scrollTop = textareaInfos.scrollTop;
+					};
+
+					$scope.insertBefore = function(textToInsert) {
+						var textareaInfos = getTextareaInfo();
+
+						textarea.value	=	textareaInfos.text.beforeSelected +
+															textToInsert +
+															textareaInfos.text.selected +
+															textareaInfos.text.afterSelected;
+
+						textarea.selectionStart	=	textareaInfos.selection.start + textToInsert.length;
+						textarea.selectionEnd		=	textareaInfos.selection.start + textareaInfos.text.selected.length + textToInsert.length;
+
+						validChange();
+
+						textarea.scrollTop = textareaInfos.scrollTop;
+					};
+
+					$scope.insertMedia = function(textToInsert) {
+						var mediaId = 'media_' + ((Date.now() * Math.random()).toString(36)).substring(0, 6);
+						$scope.insertBefore("\n" + textToInsert + mediaId + "\n");
+
+						var textareaInfos = getTextareaInfo();
+
+						var mediaLink					=	'http://lien_vers_media/';
+						var mediaDescription	= ' "Description optionnelle"';
+						var mediaOptions 			=	mediaLink + mediaDescription;
+
+						textarea.value += "\n[" + mediaId + ']: ' + mediaOptions;
+
+						textarea.selectionStart	=	textarea.value.length - mediaOptions.length;
+						textarea.selectionEnd		=	textarea.value.length - mediaDescription.length;
+
+						validChange(textareaInfos);
+
+						textarea.scrollTop = textarea.scrollHeight;
+					};
+
+					$scope.insertLink = function() {
+						$scope.wrapWith('[', '](http://lien_a_inserer)');
+					};
+				}
+			};
+		});
 })(angular);

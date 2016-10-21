@@ -58,8 +58,11 @@
 				<small>
 					Le coeur de l'article. Formattage possible via
 					<a target="_blank" href="http://daringfireball.net/projects/markdown/syntax">Markdown</a>.
+					Vous pouvez vous aider des boutons ci-dessous :
 				</small>
+				<markdown-buttons textarea="article-content"></markdown-buttons>
 			</p>
+
 			<textarea class="article"
 				  id="article-content"
 				  required

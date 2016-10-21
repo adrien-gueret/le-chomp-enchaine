@@ -402,6 +402,14 @@ fieldset p {
 	width: 80%;
 }
 
+markdown-buttons {
+	text-align: center;
+}
+
+markdown-buttons button {
+	margin: 2px;
+}
+
 textarea.article {
 	display: block;
 	margin: 10px auto;
