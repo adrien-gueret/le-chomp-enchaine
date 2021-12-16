@@ -337,6 +337,10 @@ article .right {
 	float: right;
 }
 
+article hr {
+    clear: both;
+}
+
 article img, table img {
 	display: inline-block;
 	max-width: 100%;
