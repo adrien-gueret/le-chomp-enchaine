@@ -1,7 +1,7 @@
 <?php
 	class Controller_articles extends Controller_index
 	{
-		public function get_index($id_article = 0)
+		public function get_index($id_article = 0, $prepublished_id_article = 0)
 		{
 			$article = Model_Articles::getById($id_article);
 
@@ -11,11 +11,11 @@
 			}
 			else
 			{
-				$this->displayDetails($article);
+				$this->displayDetails($article, $prepublished_id_article);
 			}
 		}
 
-		private function displayDetails(Model_Articles $article)
+		private function displayDetails(Model_Articles $article, $prepublished_id_article = 0)
 		{
 			if (empty($article)) {
 				$this->response->error('L\'article demandé est introuvable.', 404);
@@ -28,6 +28,7 @@
 			$canReadUnpublished = $this->_currentUser->hasPermission(Model_Groups::PERM_READ_UNPUBLISHED_ARTICLES);
 
 			if ( ! $isPublished && ! $canReadUnpublished && ! $this->_currentUser->equals($author)) {
+				var_dump($prepublished_id_article);die;
 				$this->response->error('L\'article demandé n\'est pas ou plus publié.', 403);
 				return;
 			}
