@@ -11,7 +11,7 @@
 			}
 			else
 			{
-				$this->displayDetails($article, $prepublished_id_article);
+				$this->displayDetails($article);
 			}
 		}
 
@@ -27,8 +27,9 @@
 			$isPublished = $article->prop('is_published');
 			$canReadUnpublished = $this->_currentUser->hasPermission(Model_Groups::PERM_READ_UNPUBLISHED_ARTICLES);
 
-			if ( ! $isPublished && ! $canReadUnpublished && ! $this->_currentUser->equals($author)) {
-				var_dump($_GET);die;
+			$prepublishedArticleId = empty($_GET['c']) ? 0 : $_GET['c'];
+
+			if ( ! $isPublished && ! $canReadUnpublished && ! $this->_currentUser->equals($author) && $article->getPrepublishedId() !== $prepublishedArticleId) {
 				$this->response->error('L\'article demandé n\'est pas ou plus publié.', 403);
 				return;
 			}
