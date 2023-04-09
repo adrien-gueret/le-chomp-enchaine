@@ -39,6 +39,7 @@
 					<input type="hidden" name="__method__" value="PUT" />
 					<input type="submit" value="Publier" />
 				</form>
+				| URL de partage de pré-publication : <pre><?= $view->article->getURl(true); ?></pre>
 			<?php endif; ?>
 		<?php endif ?>
 	</aside>

@@ -12,7 +12,7 @@
 	   class="twitter-share-button"
 	   data-url="<?= $view->url; ?>"
 	   data-size="large"
-	   data-via="LeChompEnchaine"
+	   data-via="MarioUnivRsalis"
 	   data-dnt="true"
 	   data-show-count="false"
 	   data-text="<?= $view->twitterDefaultText; ?>"></a>

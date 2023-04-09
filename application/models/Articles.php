@@ -112,9 +112,19 @@ class Model_Articles extends EntityPHP\Entity {
 		return $arrayToReturn;
 	}
 
-	public function getUrl()
+	public function getPrepublishedId() {
+		return md5('prepublished'.$this->getId());
+	}
+
+	public function getUrl($prepublished = false)
 	{
-		return BASE_URL.'articles/'.$this->getId().'-'.Library_String::makeUrlCompliant($this->title);
+		$url = BASE_URL.'articles/'.$this->getId().'-'.Library_String::makeUrlCompliant($this->title);
+
+		if ($prepublished) {
+			$url .= '?c='.$this->getPrepublishedId();
+		}
+
+		return $url;
 	}
 
 	public function getContentImagesUrl()
