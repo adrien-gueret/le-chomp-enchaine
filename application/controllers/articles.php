@@ -72,7 +72,7 @@
 				$twitterDefaultText = $category->prop('name').' - '.$twitterDefaultText;
 			}
 
-			$templateShareLinks = $isPublished ? '' : \Eliya\Tpl::get('articles/share_links', [
+			$templateShareLinks = !$isPublished ? '' : \Eliya\Tpl::get('articles/share_links', [
 				'url'					=>	$article->getUrl(),
 				'twitterDefaultText'	=>	$twitterDefaultText,
 			]);
