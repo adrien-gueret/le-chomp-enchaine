@@ -28,8 +28,9 @@
 			$canReadUnpublished = $this->_currentUser->hasPermission(Model_Groups::PERM_READ_UNPUBLISHED_ARTICLES);
 
 			$prepublishedArticleId = empty($_GET['c']) ? 0 : $_GET['c'];
+			$isSharedURL = $article->getPrepublishedId() === $prepublishedArticleId;
 
-			if ( ! $isPublished && ! $canReadUnpublished && ! $this->_currentUser->equals($author) && $article->getPrepublishedId() !== $prepublishedArticleId) {
+			if ( ! $isPublished && ! $canReadUnpublished && ! $this->_currentUser->equals($author) && !$isSharedURL) {
 				$this->response->error('L\'article demandé n\'est pas ou plus publié.', 403);
 				return;
 			}
@@ -71,7 +72,7 @@
 				$twitterDefaultText = $category->prop('name').' - '.$twitterDefaultText;
 			}
 
-			$templateShareLinks = \Eliya\Tpl::get('articles/share_links', [
+			$templateShareLinks = $isPublished ? '' : \Eliya\Tpl::get('articles/share_links', [
 				'url'					=>	$article->getUrl(),
 				'twitterDefaultText'	=>	$twitterDefaultText,
 			]);
